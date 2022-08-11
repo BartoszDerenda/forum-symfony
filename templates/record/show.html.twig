@@ -1,19 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.record_view'|trans }}
+    {{ 'title.record_view'|trans({'%id%': record.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.record_view'|trans }}</h1>
+    <h1>{{ 'title.record_view'|trans({'%id%': record.id|default('')}) }}</h1>
     {% if record is defined and record|length %}
         <dl>
             <dt>{{ 'label.title'|trans }}</dt>
             <dd>{{ record.title }}</dd>
             <dt>{{ 'label.content'|trans }}</dt>
-            <dd>{{ record.content }}</dd>
-            <dt>{{ 'label.tags'|trans }}</dt>
-            <dd>{{ record.tags|join(', ') }}</dd>
+            <dd>{{ record.comment }}</dd>
         </dl>
     {% else %}
         <p>

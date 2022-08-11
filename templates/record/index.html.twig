@@ -12,7 +12,7 @@
             <tr>
                 <th>{{ 'label.id'|trans }}</th>
                 <th>{{ 'label.title'|trans }}</th>
-                <th>{{ 'label.tags'|trans }}</th>
+                <th>{{ 'label.content'|trans }}</th>
                 <th scope="col">
                     {{ 'label.actions'|trans }}
                 </th>
@@ -23,7 +23,7 @@
                 <tr>
                     <td>{{ record.id }}</td>
                     <td>{{ record.title }}</td>
-                    <td>{{ record.tags|join(', ') }}</td>
+                    <td>{{ record.comment }}</td>
                     <td><a href="{{ url('record_show', {id: record.id}) }}">{{ 'label.show'|trans }}</a></td>
                 </tr>
             {% endfor %}
