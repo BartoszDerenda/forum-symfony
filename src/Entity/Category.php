@@ -1,22 +1,25 @@
 <?php
 /**
- * Task entity.
+ * Category entity.
  */
 
 namespace App\Entity;
 
-use App\Repository\TaskRepository;
+use App\Repository\CategoryRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Class Task.
+ * Class Category.
  *
  * @psalm-suppress MissingConstructor
  */
-#[ORM\Entity(repositoryClass: TaskRepository::class)]
-#[ORM\Table(name: 'tasks')]
-class Task
+#[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[ORM\Table(name: 'categories')]
+#[ORM\UniqueConstraint(name: 'uq_categories_title', columns: ['title'])]
+#[UniqueEntity(fields: ['title'])]
+class Category
 {
     /**
      * Primary key.
@@ -32,8 +35,6 @@ class Task
      * Created at.
      *
      * @var DateTimeImmutable|null
-     *
-     * @psalm-suppress PropertyNotSetInConstructor
      */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $createdAt;
@@ -42,8 +43,6 @@ class Task
      * Updated at.
      *
      * @var DateTimeImmutable|null
-     *
-     * @psalm-suppress PropertyNotSetInConstructor
      */
     #[ORM\Column(type: 'datetime_immutable')]
     private ?DateTimeImmutable $updatedAt;
@@ -54,24 +53,7 @@ class Task
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $title = null;
-
-    /**
-     * Comment
-     *
-     * @var string|null
-     */
-    #[ORM\Column(length: 2000)]
-    private ?string $comment = null;
-
-    /**
-     * Category.
-     *
-     * @var Category|null
-     */
-    #[ORM\ManyToOne(targetEntity: Category::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Category $category = null;
+    private ?string $title;
 
     /**
      * Getter for Id.
@@ -141,51 +123,5 @@ class Task
     public function setTitle(?string $title): void
     {
         $this->title = $title;
-    }
-
-    /**
-     * Getter for comment.
-     *
-     * @return string|null Comment
-     */
-    public function getComment(): ?string
-    {
-        return $this->comment;
-    }
-
-    /**
-     * Setter for comment.
-     *
-     * @param string $comment
-     * @return $this
-     */
-    public function setComment(string $comment): self
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
-
-    /**
-     * Getter for category.
-     *
-     * @return Category|null Category
-     */
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    /**
-     * Setter for category.
-     *
-     * @param Category|null $category
-     * @return $this
-     */
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
     }
 }
