@@ -70,6 +70,26 @@
                 <source>label.category</source>
                 <target>Kategoria</target>
             </trans-unit>
+            <trans-unit id="navbar.dropdown_title">
+                <source>navbar.dropdown_title</source>
+                <target>Opcje</target>
+            </trans-unit>
+            <trans-unit id="title.home_title">
+                <source>title.home_title</source>
+                <target>Q&#38;A - Strona domowa</target>
+            </trans-unit>
+            <trans-unit id="title.home_welcome">
+                <source>title.home_welcome</source>
+                <target>Witaj na forum Q&#38;A!</target>
+            </trans-unit>
+            <trans-unit id="title.category_list">
+                <source>title.category_list</source>
+                <target>Lista kategorii</target>
+            </trans-unit>
+            <trans-unit id="navbar.dropdown_category">
+                <source>navbar.dropdown_category</source>
+                <target>Kategorie</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
