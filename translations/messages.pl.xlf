@@ -60,7 +60,7 @@
             </trans-unit>
             <trans-unit id="title.task_details">
                 <source>title.task_details</source>
-                <target>Zadanie: #%id%</target>
+                <target>Zadanie #%id%</target>
             </trans-unit>
             <trans-unit id="action.back_to_list">
                 <source>action.back_to_list</source>
@@ -89,6 +89,10 @@
             <trans-unit id="navbar.dropdown_category">
                 <source>navbar.dropdown_category</source>
                 <target>Kategorie</target>
+            </trans-unit>
+            <trans-unit id="title.category_details">
+                <source>title.category_details</source>
+                <target>Kategoria #%id%</target>
             </trans-unit>
         </body>
     </file>
