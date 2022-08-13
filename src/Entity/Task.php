@@ -7,6 +7,9 @@ namespace App\Entity;
 
 use App\Repository\TaskRepository;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -72,6 +75,25 @@ class Task
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
+    /**
+     * Tags.
+     *
+     * @var ArrayCollection<int, Tags>
+     */
+    #[Assert\Valid]
+    #[ORM\ManyToMany(targetEntity: Tags::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
+    #[ORM\JoinTable(name: 'tasks_tags')]
+    private $tags;
+
+    /**
+     * Constructor for Tags.
+     *
+     */
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
 
     /**
      * Getter for Id.
@@ -188,4 +210,37 @@ class Task
 
         return $this;
     }
+
+    /**
+     * Getter for tags.
+     *
+     * @return Collection<int, Tags> Tags collection
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Add tag.
+     *
+     * @param Tags $tag Tag entity
+     */
+    public function addTag(Tags $tag): void
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+        }
+    }
+
+    /**
+     * Remove tag.
+     *
+     * @param Tags $tag Tag entity
+     */
+    public function removeTag(Tags $tag): void
+    {
+        $this->tags->removeElement($tag);
+    }
+
 }

@@ -7,7 +7,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Category;
 use App\Entity\Enum\TaskStatus;
-use App\Entity\Tag;
+use App\Entity\Tags;
 use App\Entity\Task;
 use App\Entity\User;
 use DateTimeImmutable;
@@ -48,6 +48,8 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
             $task->setCategory($category);
+            $tag = $this->getRandomReference('tags');
+            $task->addTag($tag);
 
             return $task;
         });
