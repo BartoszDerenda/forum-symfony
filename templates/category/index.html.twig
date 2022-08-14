@@ -6,6 +6,10 @@
 
 {% block body %}
     <h1>{{ 'title.category_list'|trans }}</h1>
+    <h3><a href="{{ url('category_create') }}" title="{{ 'action.create_category'|trans }}">
+            {{ 'action.create_category'|trans }}
+        </a></h3>
+    <br>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
@@ -30,9 +34,17 @@
                     <td>{{ category.updatedAt|format_date('long') }}</td>
                     <td>{{ category.title }}</td>
                     <td>
-                        <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.show'|trans }}">
-                            {{ 'action.show'|trans }}
-                        </a>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ 'action.options'|trans }}
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.show'|trans }}">{{ 'action.show'|trans }}</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">{{ 'action.edit'|trans }}</a></li>
+                                <li><a class="dropdown-item" href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}">{{ 'action.delete'|trans }}</a></li>
+                            </ul>
+                        </div>
                     </td>
                 </tr>
             {% endfor %}
