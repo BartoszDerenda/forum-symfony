@@ -142,6 +142,10 @@
                 <source>message.form_error</source>
                 <target>Błąd w formularzu</target>
             </trans-unit>
+            <trans-unit id="message.category_contains_tasks">
+                <source>message.category_contains_tasks</source>
+                <target>Error - kategoria posiada przypisane pytania.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
