@@ -120,11 +120,11 @@
             </trans-unit>
             <trans-unit id="title.category_delete">
                 <source>title.category_delete</source>
-                <target>Delete category</target>
+                <target>Deleting category</target>
             </trans-unit>
             <trans-unit id="action.create_category">
                 <source>action.create_category</source>
-                <target>Create new category</target>
+                <target>Creating new category</target>
             </trans-unit>
             <trans-unit id="action.options">
                 <source>action.options</source>
@@ -141,6 +141,18 @@
             <trans-unit id="message.category_contains_tasks">
                 <source>message.category_contains_tasks</source>
                 <target>Error - category contains tasks.</target>
+            </trans-unit>
+            <trans-unit id="label.none">
+                <source>label.none</source>
+                <target> </target>
+            </trans-unit>
+            <trans-unit id="action.create_task">
+                <source>action.create_task</source>
+                <target>Create a new post</target>
+            </trans-unit>
+            <trans-unit id="title.task_create">
+                <source>title.task_create</source>
+                <target>Creating new post</target>
             </trans-unit>
         </body>
     </file>

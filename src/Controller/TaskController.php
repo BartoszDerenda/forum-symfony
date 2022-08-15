@@ -7,10 +7,12 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Service\TaskServiceInterface;
+use App\Form\Type\TaskType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class TaskController.
@@ -24,11 +26,19 @@ class TaskController extends AbstractController
     private TaskServiceInterface $taskService;
 
     /**
+     * Translator.
+     *
+     * @var TranslatorInterface
+     */
+    private TranslatorInterface $translator;
+
+    /**
      * Constructor.
      */
-    public function __construct(TaskServiceInterface $taskService)
+    public function __construct(TaskServiceInterface $taskService, TranslatorInterface $translator)
     {
         $this->taskService = $taskService;
+        $this->translator = $translator;
     }
 
     /**
@@ -64,5 +74,40 @@ class TaskController extends AbstractController
     public function show(Task $task): Response
     {
         return $this->render('task/show.html.twig', ['task' => $task]);
+    }
+
+    /**
+     * Create action.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/create',
+        name: 'task_create',
+        methods: 'GET|POST',
+    )]
+    public function create(Request $request): Response
+    {
+        $task = new Task();
+        $form = $this->createForm(TaskType::class, $task);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->taskService->save($task);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.created_successfully')
+            );
+
+            return $this->redirectToRoute('task_index');
+        }
+
+        return $this->render(
+            'task/create.html.twig',
+            ['form' => $form->createView()]
+        );
     }
 }

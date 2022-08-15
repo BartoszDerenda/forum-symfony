@@ -146,6 +146,18 @@
                 <source>message.category_contains_tasks</source>
                 <target>Error - kategoria posiada przypisane pytania.</target>
             </trans-unit>
+            <trans-unit id="label.none">
+                <source>label.none</source>
+                <target> </target>
+            </trans-unit>
+            <trans-unit id="action.create_task">
+                <source>action.create_task</source>
+                <target>Utwórz nowy post</target>
+            </trans-unit>
+            <trans-unit id="title.task_create">
+                <source>title.task_create</source>
+                <target>Utwórz nowy post</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

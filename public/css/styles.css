@@ -1,3 +1,15 @@
-p {
-    color: red;
+.dl-horizontal {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-auto-columns: 15%;
+    grid-auto-flow: column;
+}
+
+.content-border {
+    padding: 5px 7px 7px;
+    background: #f1f1f1;
+    border: 2px solid #414141;
+    box-shadow: 0 2px 2px -1px gray;
+    border-collapse: separate;
+    border-spacing: 15px;
 }

@@ -6,6 +6,9 @@
 
 {% block body %}
     <h1>{{ 'title.task_list'|trans }}</h1>
+    <h3><a href="{{ url('task_create') }}" title="{{ 'action.create_task'|trans }}">
+            {{ 'action.create_task'|trans }}
+        </a></h3>
     {% if pagination is defined and pagination.items|length %}
 
         <div class="navigation text-center">
