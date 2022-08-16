@@ -62,4 +62,14 @@ class TaskService implements TaskServiceInterface
     {
         $this->taskRepository->save($task);
     }
+
+    /**
+     * Delete entity.
+     *
+     * @param Task $task Task entity
+     */
+    public function delete(Task $task): void
+    {
+        $this->taskRepository->delete($task);
+    }
 }

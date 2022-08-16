@@ -154,6 +154,18 @@
                 <source>title.task_create</source>
                 <target>Creating new post</target>
             </trans-unit>
+            <trans-unit id="label.comment">
+                <source>label.comment</source>
+                <target>Comment</target>
+            </trans-unit>
+            <trans-unit id="title.task_edit">
+                <source>title.task_edit</source>
+                <target>Editing post</target>
+            </trans-unit>
+            <trans-unit id="title.task_delete">
+                <source>title.task_delete</source>
+                <target>Deleting post</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
