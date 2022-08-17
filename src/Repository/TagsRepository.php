@@ -107,18 +107,16 @@ class TagsRepository extends ServiceEntityRepository
      * Find one by title.
      *
      * @param $value
-     * @return array
+     * @return Tags|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findOneByTitle($value): array
+    public function findOneByTitle($value): ?Tags
     {
         return $this->createQueryBuilder('tags')
             ->andWhere('tags.title = :title')
             ->setParameter('title', $value)
-            ->orderBy('tags.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getOneOrNullResult();
     }
 
 //    /**
