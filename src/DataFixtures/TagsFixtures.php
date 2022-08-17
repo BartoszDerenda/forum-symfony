@@ -6,6 +6,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Tags;
+use DateTimeImmutable;
 
 /**
  * Class TagsFixtures.
@@ -23,10 +24,20 @@ class TagsFixtures extends AbstractBaseFixtures
     public function loadData(): void
     {
         $this->createMany(50, 'tags', function (int $i) {
-            $tag = new Tags();
-            $tag->setTitle($this->faker->unique()->word);
+            $tags = new Tags();
+            $tags->setTitle($this->faker->unique()->word);
+            $tags->setCreatedAt(
+                DateTimeImmutable::createFromMutable(
+                    $this->faker->dateTimeBetween('-100 days', '-1 days')
+                )
+            );
+            $tags->setUpdatedAt(
+                DateTimeImmutable::createFromMutable(
+                    $this->faker->dateTimeBetween('-100 days', '-1 days')
+                )
+            );
 
-            return $tag;
+            return $tags;
         });
 
         $this->manager->flush();
