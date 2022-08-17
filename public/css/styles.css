@@ -13,10 +13,3 @@
     border-collapse: separate;
     border-spacing: 15px;
 }
-
-.submit-button {
-    display: flex;
-    justify-items: center;
-    justify-content: center;
-    width: 200px;
-}

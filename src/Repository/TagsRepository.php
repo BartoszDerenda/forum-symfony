@@ -81,19 +81,44 @@ class TagsRepository extends ServiceEntityRepository
     }
 
     /**
+     * Save entity.
+     *
+     * @param Tags $tags Tags entity
+     */
+    public function save(Tags $tags): void
+    {
+        $this->_em->persist($tags);
+        $this->_em->flush();
+    }
+
+    /**
      * Delete entity.
      *
-     * @param Tags $entity
-     * @param bool $flush
+     * @param Tags $tags
      * @return void
      */
-    public function remove(Tags $entity, bool $flush = false): void
+    public function delete(Tags $tags): void
     {
-        $this->getEntityManager()->remove($entity);
+        $this->_em->remove($tags);
+        $this->_em->flush();
+    }
 
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+    /**
+     * Find one by title.
+     *
+     * @param $value
+     * @return array
+     */
+    public function findOneByTitle($value): array
+    {
+        return $this->createQueryBuilder('tags')
+            ->andWhere('tags.title = :title')
+            ->setParameter('title', $value)
+            ->orderBy('tags.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
 //    /**
