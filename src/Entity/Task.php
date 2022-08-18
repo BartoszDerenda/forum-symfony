@@ -66,6 +66,7 @@ class Task
     #[ORM\Column(length: 2000)]
     private ?string $comment = null;
 
+
     /**
      * Category.
      *
@@ -78,12 +79,19 @@ class Task
     /**
      * Tags.
      *
-     * @var ArrayCollection<int, Tags>
      */
     #[Assert\Valid]
     #[ORM\ManyToMany(targetEntity: Tags::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
     #[ORM\JoinTable(name: 'tasks_tags')]
     private $tags;
+
+    /**
+     * Image.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $image = null;
 
     /**
      * Constructor for Tags.
@@ -240,6 +248,18 @@ class Task
     public function removeTag(Tags $tag): void
     {
         $this->tags->removeElement($tag);
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
     }
 
 }

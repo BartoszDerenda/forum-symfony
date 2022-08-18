@@ -13,3 +13,7 @@
     border-collapse: separate;
     border-spacing: 15px;
 }
+
+.word-break {
+    word-wrap: break-word;
+}

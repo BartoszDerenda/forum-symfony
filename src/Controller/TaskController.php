@@ -96,6 +96,15 @@ class TaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $request->files->get('task')['image'];
+            if ($file) {
+                $filename = md5(uniqid()) . '.' . $file->guessClientExtension();
+
+                $file->move(
+                    $this->getParameter('uploads_dir'), $filename
+                );
+                $task->setImage($filename);
+            }
             $this->taskService->save($task);
 
             $this->addFlash(

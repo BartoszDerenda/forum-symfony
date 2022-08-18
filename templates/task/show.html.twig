@@ -19,7 +19,8 @@
         </dl>
         <dl>
             <dt>{{ 'label.content'|trans }}</dt>
-            <dd class="content-border">{{ task.comment }}</dd>
+            <dd class="content-border word-break">{{ task.comment }}</dd>
+            <dd><img src="{{ asset('uploads/' ~ task.image) }}" class="w-25 img-thumbnail" alt="[image here]"></dd>
         </dl>
         <dl class="dl-horizontal">
             <dt>{{ 'label.created_at'|trans }}</dt>
