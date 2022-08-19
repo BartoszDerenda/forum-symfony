@@ -1,19 +1,19 @@
 .dl-horizontal {
     display: grid;
     grid-template-rows: auto auto;
-    grid-auto-columns: 15%;
+    grid-auto-columns: 25%;
     grid-auto-flow: column;
 }
 
-.content-border {
-    padding: 5px 7px 7px;
-    background: #f1f1f1;
+.word-break {
+    overflow-wrap: break-word;
+}
+
+.post-border {
+    padding: 14px 18px 14px 18px;
+    background: #f8f8f8;
     border: 2px solid #414141;
     box-shadow: 0 2px 2px -1px gray;
     border-collapse: separate;
     border-spacing: 15px;
-}
-
-.word-break {
-    word-wrap: break-word;
 }
