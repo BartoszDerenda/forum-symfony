@@ -16,17 +16,18 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{ url('category_index') }}">{{ 'navbar.dropdown_category'|trans }}</a></li>
                         <li><a class="dropdown-item" href="{{ url('tags_index') }}">{{ 'navbar.dropdown_tags'|trans }}</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
             </ul>
-            <!--
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            -->
+            <li class="nav-item d-flex">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class="nav-link black">{{ app.user.email }}</div>
+                        <a class="nav-link active" href="{{ url('app_logout') }}">{{ 'action.logout'|trans }}</a>
+                {% else %}
+                        <a class="nav-link active" href="{{ url('app_login') }}">{{ 'action.login'|trans }}</a>
+                        <a class="nav-link active" href="{{ url('app_register') }}">{{ 'action.register'|trans }}</a>
+                {% endif %}
+            </li>
         </div>
     </div>
 </nav>

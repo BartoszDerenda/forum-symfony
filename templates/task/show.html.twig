@@ -19,7 +19,9 @@
             <dl>
                 <dt>{{ 'label.content'|trans }}</dt>
                 <dd class="word-break">{{ task.comment }}</dd>
-                <dd><a href="{{ asset('uploads/' ~ task.image) }}" target="_blank"><img src="{{ asset('uploads/' ~ task.image) }}" class="w-25 img-thumbnail"></a></dd>
+                {% if task.image|default(null) %}
+                    <dd><a href="{{ asset('uploads/' ~ task.image) }}" target="_blank"><img src="{{ asset('uploads/' ~ task.image) }}" class="w-25 img-thumbnail"></a></dd>
+                {% endif %}
             </dl>
             <dl class="dl-horizontal">
                 <dt>{{ 'label.created_at'|trans }}</dt>
