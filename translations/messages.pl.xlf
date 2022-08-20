@@ -182,6 +182,34 @@
                 <source>navbar.dropdown_tags</source>
                 <target>Tagi</target>
             </trans-unit>
+            <trans-unit id="action.register">
+                <source>action.register</source>
+                <target>Rejestracja</target>
+            </trans-unit>
+            <trans-unit id="title.tags_create">
+                <source>title.tags_create</source>
+                <target>Stwórz tag</target>
+            </trans-unit>
+            <trans-unit id="title.tags_delete">
+                <source>title.tags_delete</source>
+                <target>Usuń tag</target>
+            </trans-unit>
+            <trans-unit id="title.tags_edit">
+                <source>title.tags_edit</source>
+                <target>Zmodyfikuj tag</target>
+            </trans-unit>
+            <trans-unit id="title.tags_list">
+                <source>title.tags_list</source>
+                <target>Lista tagów</target>
+            </trans-unit>
+            <trans-unit id="action.create_tags">
+                <source>action.create_tags</source>
+                <target>Tworzenie tagu</target>
+            </trans-unit>
+            <trans-unit id="title.tags_details">
+                <source>title.tags_details</source>
+                <target>Tag</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

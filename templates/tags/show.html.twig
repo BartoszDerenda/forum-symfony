@@ -8,9 +8,9 @@
     <h1>{{ 'title.tags_details'|trans({'%id%': tags.id|default('')}) }}</h1>
     {% if tags is defined and tags|length %}
         <dl class="dl-horizontal">
-            <dt>{{ 'tags.id'|trans }}</dt>
+            <dt>{{ 'label.id'|trans }}</dt>
             <dd>{{ tags.id }}</dd>
-            <dt>{{ 'tags.title'|trans }}</dt>
+            <dt>{{ 'label.title'|trans }}</dt>
             <dd>{{  tags.title }}</dd>
         </dl>
         <dl class="dl-horizontal">
