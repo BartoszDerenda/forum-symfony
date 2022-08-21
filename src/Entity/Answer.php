@@ -2,14 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\TagsRepository;
-use DateTimeImmutable;
+use App\Repository\AnswerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeImmutable;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: TagsRepository::class)]
-class Tags
+/**
+ * Class Answer.
+ *
+ * @psalm-suppress MissingConstructor
+ */
+#[ORM\Entity(repositoryClass: AnswerRepository::class)]
+#[ORM\Table(name: 'answers')]
+class Answer
 {
     /**
      * Primary key.
@@ -18,19 +23,24 @@ class Tags
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
     /**
-     * Title.
+     * Comment.
      *
      * @var string|null
      */
-    #[ORM\Column(type: 'string', length: 32)]
-    #[Assert\Type('string')]
-    #[Assert\NotBlank]
-    #[Assert\Length(min: 3, max: 32)]
-    private ?string $title = null;
+    #[ORM\Column(length: 2000)]
+    private ?string $comment = null;
+
+    /**
+     * Image.
+     *
+     * @var string|null
+     */
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $image = null;
 
     /**
      * Created at.
@@ -51,29 +61,39 @@ class Tags
     private ?DateTimeImmutable $updatedAt;
 
     /**
-     * Slug.
+     * Task.
      *
-     * @var string|null
+     * @var Task|null
      */
-    #[ORM\Column(type: 'string', length: 32)]
-    #[Assert\Type('string')]
-    #[Assert\Length(min: 3, max: 32)]
-    #[Gedmo\Slug(fields: ['title'])]
-    private ?string $slug = null;
+    #[ORM\ManyToOne(targetEntity: Task::class, inversedBy: 'answer')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Task $task = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getComment(): ?string
     {
-        return $this->title;
+        return $this->comment;
     }
 
-    public function setTitle(string $title): self
+    public function setComment(string $comment): self
     {
-        $this->title = $title;
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
@@ -102,20 +122,15 @@ class Tags
         return $this;
     }
 
-    public function getSlug(): ?string
+    public function getTask(): ?Task
     {
-        return $this->slug;
+        return $this->task;
     }
 
-    public function setSlug(string $slug): self
+    public function setTask(?Task $task): self
     {
-        $this->slug = $slug;
+        $this->task = $task;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->title;
     }
 }

@@ -15,6 +15,8 @@
                 <dd>{{  task.title }}</dd>
                 <dt>{{ 'label.category'|trans }}</dt>
                 <dd>{{  task.category.title }}</dd>
+                <dt>{{ 'label.tags'|trans }}</dt>
+                <dd>{{  task.tags|join(', ') }}</dd>
             </dl>
             <dl>
                 <dt>{{ 'label.content'|trans }}</dt>
@@ -29,6 +31,11 @@
                 <dt>{{ 'label.updated_at'|trans }}</dt>
                 <dd>{{ task.updatedAt|format_date('long') }}</dd>
             </dl>
+            <button>
+                <a href="{{ url('answer_create', {id: task.id}) }}" title="{{ 'action.answer_this'|trans }}">
+                    {{ 'action.answer_this'|trans }}
+                </a>
+            </button>
         </div>
         <p>
             <a href="{{ url('task_index') }}" title="{{ 'action.back_to_list'|trans }}">

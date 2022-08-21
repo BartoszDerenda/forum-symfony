@@ -96,7 +96,10 @@ class TaskType extends AbstractType
 
         $builder->add(
             'image',
-            FileType::class
+            FileType::class,
+            [
+                'required' => false,
+            ]
         );
     }
 

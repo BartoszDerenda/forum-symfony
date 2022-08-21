@@ -41,6 +41,7 @@ class TagsDataTransformer implements DataTransformerInterface
      */
     public function transform($value): string
     {
+        dump($value);
         if ($value->isEmpty()) {
             return '';
         }

@@ -94,12 +94,21 @@ class Task
     private ?string $image = null;
 
     /**
-     * Constructor for Tags.
+     * Answer.
+     *
+     */
+    #[ORM\OneToMany(mappedBy: 'task', targetEntity: Answer::class)]
+    private $answer;
+
+
+    /**
+     * Constructor.
      *
      */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->answer = new ArrayCollection();
     }
 
     /**
@@ -258,6 +267,36 @@ class Task
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Answer>
+     */
+    public function getAnswer(): Collection
+    {
+        return $this->answer;
+    }
+
+    public function addAnswer(Answer $answer): self
+    {
+        if (!$this->answer->contains($answer)) {
+            $this->answer->add($answer);
+            $answer->setTask($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnswer(Answer $answer): self
+    {
+        if ($this->answer->removeElement($answer)) {
+            // set the owning side to null (unless already changed)
+            if ($answer->getTask() === $this) {
+                $answer->setTask(null);
+            }
+        }
 
         return $this;
     }
