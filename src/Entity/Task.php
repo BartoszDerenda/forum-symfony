@@ -100,6 +100,17 @@ class Task
     #[ORM\OneToMany(mappedBy: 'task', targetEntity: Answer::class)]
     private $answer;
 
+    /**
+     * Author.
+     *
+     * @var User|null
+     */
+    #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: true)]
+    #[Assert\NotBlank]
+    #[Assert\Type(User::class)]
+    private ?User $author;
+
 
     /**
      * Constructor.
@@ -297,6 +308,18 @@ class Task
                 $answer->setTask(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

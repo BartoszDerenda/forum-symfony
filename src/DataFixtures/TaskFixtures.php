@@ -50,9 +50,19 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
             $category = $this->getRandomReference('categories');
             $task->setCategory($category);
 
-            /** @var Tags $tag */
-            $tag = $this->getRandomReference('tags');
-            $task->addTag($tag);
+            /** @var array<array-key, Tags> $tags */
+            $tags = $this->getRandomReferences(
+                'tags',
+                $this->faker->numberBetween(0, 5)
+            );
+            foreach ($tags as $tag) {
+                $task->addTag($tag);
+            }
+
+
+            /** @var User $author */
+            $author = $this->getRandomReference('users');
+            $task->setAuthor($author);
 
             return $task;
         });
@@ -66,10 +76,10 @@ class TaskFixtures extends AbstractBaseFixtures implements DependentFixtureInter
      *
      * @return string[] of dependencies
      *
-     * @psalm-return array{0: CategoryFixtures::class}
+     * @psalm-return array{0: CategoryFixtures::class, 1: TagsFixtures::class, 2: UserFixtures::class}
      */
     public function getDependencies(): array
     {
-        return [CategoryFixtures::class];
+        return [CategoryFixtures::class, TagsFixtures::class, UserFixtures::class];
     }
 }

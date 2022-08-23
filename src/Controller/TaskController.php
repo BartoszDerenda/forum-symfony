@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Entity\User;
 use App\Service\TaskServiceInterface;
 use App\Form\Type\TaskType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,7 +54,8 @@ class TaskController extends AbstractController
     public function index(Request $request): Response
     {
         $pagination = $this->taskService->getPaginatedList(
-            $request->query->getInt('page', 1)
+            $request->query->getInt('page', 1),
+            $this->getUser()
         );
 
         return $this->render('task/index.html.twig', ['pagination' => $pagination]);
@@ -84,27 +86,21 @@ class TaskController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route(
-        '/create',
-        name: 'task_create',
-        methods: 'GET|POST',
-    )]
+    #[Route('/create', name: 'task_create', methods: 'GET|POST')]
     public function create(Request $request): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $task = new Task();
-        $form = $this->createForm(TaskType::class, $task);
+        $task->setAuthor($user);
+        $form = $this->createForm(
+            TaskType::class,
+            $task,
+            ['action' => $this->generateUrl('task_create')]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $request->files->get('task')['image'];
-            if ($file) {
-                $filename = md5(uniqid()) . '.' . $file->guessClientExtension();
-
-                $file->move(
-                    $this->getParameter('uploads_dir'), $filename
-                );
-                $task->setImage($filename);
-            }
             $this->taskService->save($task);
 
             $this->addFlash(
