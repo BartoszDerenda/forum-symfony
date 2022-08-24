@@ -6,6 +6,8 @@
 namespace App\Controller;
 
 use App\Entity\Answer;
+use App\Entity\Task;
+use App\Entity\User;
 use App\Form\Type\AnswerType;
 use App\Service\AnswerServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -55,10 +57,18 @@ class AnswerController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|POST',
     )]
-    public function create(Request $request): Response
+    public function create(Request $request, Task $task): Response
     {
+        /** @var User $author */
+        $author = $this->getUser();
+
         $answer = new Answer();
-        $form = $this->createForm(AnswerType::class, $answer);
+        $answer->setAuthor($author);
+        $answer->setTask($task);
+        $form = $this->createForm(
+            AnswerType::class,
+            $answer,
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -75,10 +85,10 @@ class AnswerController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.created_successfully')
+                $this->translator->trans('message.answer_created_successfully')
             );
 
-            return $this->redirectToRoute('task_show');
+            return $this->redirectToRoute('task_show', ['id' => $answer->getTask()->getId()]);
         }
 
         return $this->render(
@@ -116,7 +126,7 @@ class AnswerController extends AbstractController
                 $this->translator->trans('message.edited_successfully')
             );
 
-            return $this->redirectToRoute('answer_index');
+            return $this->redirectToRoute('task_show', ['id' => $answer->getTask()->getId()]);
         }
 
         return $this->render(
@@ -157,7 +167,7 @@ class AnswerController extends AbstractController
                 $this->translator->trans('message.deleted_successfully')
             );
 
-            return $this->redirectToRoute('answer_index');
+            return $this->redirectToRoute('task_index');
         }
 
         return $this->render(

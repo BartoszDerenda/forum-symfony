@@ -97,7 +97,7 @@ class Task
      * Answer.
      *
      */
-    #[ORM\OneToMany(mappedBy: 'task', targetEntity: Answer::class)]
+    #[ORM\OneToMany(mappedBy: 'answer', targetEntity: Answer::class)]
     private $answer;
 
     /**

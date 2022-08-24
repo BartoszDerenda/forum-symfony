@@ -38,7 +38,6 @@ class AnswerType extends AbstractType
                 'required' => true,
                 'attr' => ['max_length' => 2000, 'rows' => '10'],
             ]);
-
         $builder->add(
             'image',
             FileType::class,

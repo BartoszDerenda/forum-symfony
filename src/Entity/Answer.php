@@ -65,9 +65,19 @@ class Answer
      *
      * @var Task|null
      */
-    #[ORM\ManyToOne(targetEntity: Task::class, inversedBy: 'answer')]
+    #[ORM\ManyToOne(targetEntity: Task::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Task $task = null;
+
+    /**
+     * Author.
+     *
+     * @var User|null
+     */
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $author = null;
+
 
     public function getId(): ?int
     {
@@ -130,6 +140,18 @@ class Answer
     public function setTask(?Task $task): self
     {
         $this->task = $task;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

@@ -58,7 +58,7 @@ class AnswerRepository extends ServiceEntityRepository
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?? $this->createQueryBuilder('task');
+        return $queryBuilder ?? $this->createQueryBuilder('answer');
     }
 
     /**

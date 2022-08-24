@@ -97,7 +97,6 @@ class TaskController extends AbstractController
         $form = $this->createForm(
             TaskType::class,
             $task,
-            ['action' => $this->generateUrl('task_create')]
         );
         $form->handleRequest($request);
 
@@ -175,7 +174,7 @@ class TaskController extends AbstractController
                 $this->translator->trans('message.edited_successfully')
             );
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
         }
 
         return $this->render(

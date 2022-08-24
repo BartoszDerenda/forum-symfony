@@ -42,6 +42,28 @@
                 </a>
             </button>
         </div>
+            {% for answer in task.answer %}
+                <div class="post-border">
+                    <dl class="dl-horizontal">
+                        <dt>{{ 'label.id'|trans }}</dt>
+                        <dd>{{ answer.id }}</dd>
+                    </dl>
+                    <hr>
+                    <dl>
+                        <dt>{{ 'label.content'|trans }}</dt>
+                        <dd class="comment">{{ answer.comment }}</dd>
+                        {% if answer.image|default(null) %}
+                            <dd><a href="{{ asset('uploads/' ~ task.image) }}" target="_blank"><img src="{{ asset('uploads/' ~ task.image) }}" class="w-25 img-thumbnail"></a></dd>
+                        {% endif %}
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>{{ 'label.created_at'|trans }}</dt>
+                        <dd>{{ answer.createdAt|format_date('long') }}</dd>
+                        <dt>{{ 'label.updated_at'|trans }}</dt>
+                        <dd>{{ answer.updatedAt|format_date('long') }}</dd>
+                    </dl>
+                </div>
+            {% endfor %}
         <p>
             <a href="{{ url('task_index') }}" title="{{ 'action.back_to_list'|trans }}">
                 {{ 'action.back_to_list'|trans }}
