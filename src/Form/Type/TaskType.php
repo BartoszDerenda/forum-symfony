@@ -7,7 +7,6 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\Entity\Task;
-use App\Entity\Tags;
 use App\Form\DataTransformer\TagsDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -85,7 +84,7 @@ class TaskType extends AbstractType
             TextType::class,
             [
                 'label' => 'label.tags',
-                'required' => false,
+                'required' => true,
                 'attr' => ['max_length' => 32],
             ]
         );
@@ -96,10 +95,9 @@ class TaskType extends AbstractType
 
         $builder->add(
             'image',
-            FileType::class,
-            [
-                'required' => false,
-            ]
+            FileType::class, array(
+                'data_class' => null,'required' => false
+            )
         );
     }
 

@@ -13,14 +13,19 @@
                 <dd>{{ task.id }}</dd>
                 <dt>{{ 'label.title'|trans }}</dt>
                 <dd>{{  task.title }}</dd>
+                <dt>{{ 'label.author'|trans }}</dt>
+                <dd>{{  task.author.nickname }}</dd>
+            </dl>
+            <dl class="dl-horizontal">
                 <dt>{{ 'label.category'|trans }}</dt>
                 <dd>{{  task.category.title }}</dd>
                 <dt>{{ 'label.tags'|trans }}</dt>
                 <dd>{{  task.tags|join(', ') }}</dd>
             </dl>
+            <hr>
             <dl>
                 <dt>{{ 'label.content'|trans }}</dt>
-                <dd class="word-break">{{ task.comment }}</dd>
+                <dd class="comment">{{ task.comment }}</dd>
                 {% if task.image|default(null) %}
                     <dd><a href="{{ asset('uploads/' ~ task.image) }}" target="_blank"><img src="{{ asset('uploads/' ~ task.image) }}" class="w-25 img-thumbnail"></a></dd>
                 {% endif %}

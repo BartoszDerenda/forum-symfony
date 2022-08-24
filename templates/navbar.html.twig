@@ -9,6 +9,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ url('task_index') }}">Forum</a>
                 </li>
+                {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ 'navbar.dropdown_title'|trans }}
@@ -18,6 +19,7 @@
                         <li><a class="dropdown-item" href="{{ url('tags_index') }}">{{ 'navbar.dropdown_tags'|trans }}</a></li>
                     </ul>
                 </li>
+                {% endif %}
             </ul>
             <li class="nav-item d-flex">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}

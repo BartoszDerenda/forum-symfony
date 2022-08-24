@@ -9,6 +9,7 @@ use App\Entity\Task;
 use App\Entity\User;
 use App\Service\TaskServiceInterface;
 use App\Form\Type\TaskType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -101,6 +102,15 @@ class TaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $request->files->get('task')['image'];
+            if ($file) {
+                $filename = md5(uniqid()) . '.' . $file->guessClientExtension();
+
+                $file->move(
+                    $this->getParameter('uploads_dir'), $filename
+                );
+                $task->setImage($filename);
+            }
             $this->taskService->save($task);
 
             $this->addFlash(
@@ -126,8 +136,18 @@ class TaskController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'task_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('EDIT', subject: 'task')]
     public function edit(Request $request, Task $task): Response
     {
+        if ($task->getAuthor() !== $this->getUser()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.no_permission')
+            );
+
+            return $this->redirectToRoute('task_index');
+        }
+
         $form = $this->createForm(
             TaskType::class,
             $task,
@@ -139,6 +159,15 @@ class TaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $request->files->get('task')['image'];
+            if ($file) {
+                $filename = md5(uniqid()) . '.' . $file->guessClientExtension();
+
+                $file->move(
+                    $this->getParameter('uploads_dir'), $filename
+                );
+                $task->setImage($filename);
+            }
             $this->taskService->save($task);
 
             $this->addFlash(
@@ -167,8 +196,18 @@ class TaskController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'task_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('DELETE', subject: 'task')]
     public function delete(Request $request, Task $task): Response
     {
+        if ($task->getAuthor() !== $this->getUser()) {
+            $this->addFlash(
+                'warning',
+                $this->translator->trans('message.no_permission')
+            );
+
+            return $this->redirectToRoute('task_index');
+        }
+
         $form = $this->createForm(
             FormType::class,
             $task,

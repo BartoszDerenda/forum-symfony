@@ -5,7 +5,17 @@
     grid-auto-flow: column;
 }
 
-.word-break {
+hr {
+    border: none;
+    border-top: 2px dashed #6b6b6b;
+    color: #fff;
+    background-color: #fff;
+    height: 2px;
+    width: 100%;
+}
+
+.comment {
+    white-space: pre-wrap;
     overflow-wrap: break-word;
 }
 
