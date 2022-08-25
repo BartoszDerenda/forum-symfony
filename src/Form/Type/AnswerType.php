@@ -1,6 +1,6 @@
 <?php
 /**
- * Task type.
+ * Answer type.
  */
 
 namespace App\Form\Type;

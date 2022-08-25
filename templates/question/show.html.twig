@@ -1,48 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.task_details'|trans({'%id%': task.id|default('')}) }}
+    {{ 'title.question_details'|trans({'%id%': question.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.task_details'|trans({'%id%': task.id|default('')}) }}</h1>
-    {% if task is defined and task|length %}
+    <h1>{{ 'title.question_details'|trans({'%id%': question.id|default('')}) }}</h1>
+    {% if question is defined and question|length %}
         <div class="post-border">
             <dl class="dl-horizontal">
                 <dt>{{ 'label.id'|trans }}</dt>
-                <dd>{{ task.id }}</dd>
+                <dd>{{ question.id }}</dd>
                 <dt>{{ 'label.title'|trans }}</dt>
-                <dd>{{  task.title }}</dd>
+                <dd>{{  question.title }}</dd>
                 <dt>{{ 'label.author'|trans }}</dt>
-                <dd>{{  task.author.nickname }}</dd>
+                <dd>{{  question.author.nickname }}</dd>
             </dl>
             <dl class="dl-horizontal">
                 <dt>{{ 'label.category'|trans }}</dt>
-                <dd>{{  task.category.title }}</dd>
+                <dd>{{  question.category.title }}</dd>
                 <dt>{{ 'label.tags'|trans }}</dt>
-                <dd>{{  task.tags|join(', ') }}</dd>
+                <dd>{{  question.tags|join(', ') }}</dd>
             </dl>
             <hr>
             <dl>
                 <dt>{{ 'label.content'|trans }}</dt>
-                <dd class="comment">{{ task.comment }}</dd>
-                {% if task.image|default(null) %}
-                    <dd><a href="{{ asset('uploads/' ~ task.image) }}" target="_blank"><img src="{{ asset('uploads/' ~ task.image) }}" class="w-25 img-thumbnail"></a></dd>
+                <dd class="comment">{{ question.comment }}</dd>
+                {% if question.image|default(null) %}
+                    <dd><a href="{{ asset('uploads/' ~ question.image) }}" target="_blank"><img src="{{ asset('uploads/' ~ question.image) }}" class="w-25 img-thumbnail"></a></dd>
                 {% endif %}
             </dl>
             <dl class="dl-horizontal">
                 <dt>{{ 'label.created_at'|trans }}</dt>
-                <dd>{{ task.createdAt|format_date('long') }}</dd>
+                <dd>{{ question.createdAt|format_date('long') }}</dd>
                 <dt>{{ 'label.updated_at'|trans }}</dt>
-                <dd>{{ task.updatedAt|format_date('long') }}</dd>
+                <dd>{{ question.updatedAt|format_date('long') }}</dd>
             </dl>
             <button>
-                <a href="{{ url('answer_create', {id: task.id}) }}" title="{{ 'action.answer_this'|trans }}">
+                <a href="{{ url('answer_create', {id: question.id}) }}" title="{{ 'action.answer_this'|trans }}">
                     {{ 'action.answer_this'|trans }}
                 </a>
             </button>
         </div>
-            {% for answer in task.answer %}
+            {% for answer in question.answer %}
                 <div class="post-border">
                     <dl class="dl-horizontal">
                         <dt>{{ 'label.id'|trans }}</dt>
@@ -53,7 +53,7 @@
                         <dt>{{ 'label.content'|trans }}</dt>
                         <dd class="comment">{{ answer.comment }}</dd>
                         {% if answer.image|default(null) %}
-                            <dd><a href="{{ asset('uploads/' ~ task.image) }}" target="_blank"><img src="{{ asset('uploads/' ~ task.image) }}" class="w-25 img-thumbnail"></a></dd>
+                            <dd><a href="{{ asset('uploads/' ~ question.image) }}" target="_blank"><img src="{{ asset('uploads/' ~ question.image) }}" class="w-25 img-thumbnail"></a></dd>
                         {% endif %}
                     </dl>
                     <dl class="dl-horizontal">
@@ -65,7 +65,7 @@
                 </div>
             {% endfor %}
         <p>
-            <a href="{{ url('task_index') }}" title="{{ 'action.back_to_list'|trans }}">
+            <a href="{{ url('question_index') }}" title="{{ 'action.back_to_list'|trans }}">
                 {{ 'action.back_to_list'|trans }}
             </a>
         </p>

@@ -43,9 +43,9 @@ class AnswerRepository extends ServiceEntityRepository
         return $this->getOrCreateQueryBuilder()
             ->select(
                 'partial answer.{id, createdAt, updatedAt, comment}',
-                'partial task.{id, title}'
+                'partial question.{id, title}'
             )
-            ->join('answer.task', '')
+            ->join('answer.question', '')
             ->orderBy('answer.createdAt', 'DESC');
     }
 

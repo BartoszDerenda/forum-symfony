@@ -61,13 +61,13 @@ class Answer
     private ?DateTimeImmutable $updatedAt;
 
     /**
-     * Task.
+     * Question.
      *
-     * @var Task|null
+     * @var Question|null
      */
-    #[ORM\ManyToOne(targetEntity: Task::class)]
+    #[ORM\ManyToOne(targetEntity: Question::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Task $task = null;
+    private ?Question $question = null;
 
     /**
      * Author.
@@ -132,14 +132,14 @@ class Answer
         return $this;
     }
 
-    public function getTask(): ?Task
+    public function getQuestion(): ?Question
     {
-        return $this->task;
+        return $this->question;
     }
 
-    public function setTask(?Task $task): self
+    public function setQuestion(?Question $question): self
     {
-        $this->task = $task;
+        $this->question = $question;
 
         return $this;
     }

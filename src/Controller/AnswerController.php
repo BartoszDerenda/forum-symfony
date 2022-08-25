@@ -6,7 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Answer;
-use App\Entity\Task;
+use App\Entity\Question;
 use App\Entity\User;
 use App\Form\Type\AnswerType;
 use App\Service\AnswerServiceInterface;
@@ -57,14 +57,14 @@ class AnswerController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET|POST',
     )]
-    public function create(Request $request, Task $task): Response
+    public function create(Request $request, Question $question): Response
     {
         /** @var User $author */
         $author = $this->getUser();
 
         $answer = new Answer();
         $answer->setAuthor($author);
-        $answer->setTask($task);
+        $answer->setQuestion($question);
         $form = $this->createForm(
             AnswerType::class,
             $answer,
@@ -88,7 +88,7 @@ class AnswerController extends AbstractController
                 $this->translator->trans('message.answer_created_successfully')
             );
 
-            return $this->redirectToRoute('task_show', ['id' => $answer->getTask()->getId()]);
+            return $this->redirectToRoute('question_show', ['id' => $answer->getQuestion()->getId()]);
         }
 
         return $this->render(
@@ -126,7 +126,7 @@ class AnswerController extends AbstractController
                 $this->translator->trans('message.edited_successfully')
             );
 
-            return $this->redirectToRoute('task_show', ['id' => $answer->getTask()->getId()]);
+            return $this->redirectToRoute('question_show', ['id' => $answer->getQuestion()->getId()]);
         }
 
         return $this->render(
@@ -167,7 +167,7 @@ class AnswerController extends AbstractController
                 $this->translator->trans('message.deleted_successfully')
             );
 
-            return $this->redirectToRoute('task_index');
+            return $this->redirectToRoute('question_index');
         }
 
         return $this->render(

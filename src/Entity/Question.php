@@ -1,11 +1,11 @@
 <?php
 /**
- * Task entity.
+ * Question entity.
  */
 
 namespace App\Entity;
 
-use App\Repository\TaskRepository;
+use App\Repository\QuestionRepository;
 use DateTimeImmutable;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -14,13 +14,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Task.
+ * Class Question.
  *
  * @psalm-suppress MissingConstructor
  */
-#[ORM\Entity(repositoryClass: TaskRepository::class)]
-#[ORM\Table(name: 'tasks')]
-class Task
+#[ORM\Entity(repositoryClass: QuestionRepository::class)]
+#[ORM\Table(name: 'questions')]
+class Question
 {
     /**
      * Primary key.
@@ -82,7 +82,7 @@ class Task
      */
     #[Assert\Valid]
     #[ORM\ManyToMany(targetEntity: Tags::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
-    #[ORM\JoinTable(name: 'tasks_tags')]
+    #[ORM\JoinTable(name: 'questions_tags')]
     private $tags;
 
     /**
@@ -294,7 +294,7 @@ class Task
     {
         if (!$this->answer->contains($answer)) {
             $this->answer->add($answer);
-            $answer->setTask($this);
+            $answer->setQuestion($this);
         }
 
         return $this;
@@ -304,8 +304,8 @@ class Task
     {
         if ($this->answer->removeElement($answer)) {
             // set the owning side to null (unless already changed)
-            if ($answer->getTask() === $this) {
-                $answer->setTask(null);
+            if ($answer->getQuestion() === $this) {
+                $answer->setQuestion(null);
             }
         }
 
