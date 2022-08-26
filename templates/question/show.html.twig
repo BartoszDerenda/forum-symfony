@@ -7,14 +7,18 @@
 {% block body %}
     <h1>{{ 'title.question_details'|trans({'%id%': question.id|default('')}) }}</h1>
     {% if question is defined and question|length %}
-        <div class="post-border">
+        <div class="post-question">
             <dl class="dl-horizontal">
                 <dt>{{ 'label.id'|trans }}</dt>
                 <dd>{{ question.id }}</dd>
                 <dt>{{ 'label.title'|trans }}</dt>
                 <dd>{{  question.title }}</dd>
                 <dt>{{ 'label.author'|trans }}</dt>
+                {% if question.author.nickname is defined %}
                 <dd>{{  question.author.nickname }}</dd>
+                    {% else %}
+                    <dd>Anonymous</dd>
+                {% endif %}
             </dl>
             <dl class="dl-horizontal">
                 <dt>{{ 'label.category'|trans }}</dt>
@@ -42,18 +46,25 @@
                 </a>
             </button>
         </div>
-            {% for answer in question.answer %}
-                <div class="post-border">
+        {% if pagination is defined and pagination.items|length %}
+            {% for answer in pagination.items %}
+                <div class="post-answer">
                     <dl class="dl-horizontal">
                         <dt>{{ 'label.id'|trans }}</dt>
                         <dd>{{ answer.id }}</dd>
+                        <dt>{{ 'label.author'|trans }}</dt>
+                        {% if pagination.author is defined %}
+                            <dd>{{ answer.author }}</dd>
+                        {% else %}
+                            <dd>Anonymous</dd>
+                        {% endif %}
                     </dl>
                     <hr>
                     <dl>
                         <dt>{{ 'label.content'|trans }}</dt>
                         <dd class="comment">{{ answer.comment }}</dd>
                         {% if answer.image|default(null) %}
-                            <dd><a href="{{ asset('uploads/' ~ question.image) }}" target="_blank"><img src="{{ asset('uploads/' ~ question.image) }}" class="w-25 img-thumbnail"></a></dd>
+                            <dd><a href="{{ asset('uploads/' ~ answer.image) }}" target="_blank"><img src="{{ asset('uploads/' ~ answer.image) }}" class="w-25 img-thumbnail"></a></dd>
                         {% endif %}
                     </dl>
                     <dl class="dl-horizontal">
@@ -64,6 +75,7 @@
                     </dl>
                 </div>
             {% endfor %}
+    {% endif %}
         <p>
             <a href="{{ url('question_index') }}" title="{{ 'action.back_to_list'|trans }}">
                 {{ 'action.back_to_list'|trans }}

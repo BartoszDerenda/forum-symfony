@@ -36,7 +36,7 @@ class QuestionRepository extends ServiceEntityRepository
      *
      * @constant int
      */
-    public const PAGINATOR_ITEMS_PER_PAGE = 8;
+    public const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
      * Constructor.
@@ -58,9 +58,11 @@ class QuestionRepository extends ServiceEntityRepository
         return $this->getOrCreateQueryBuilder()
             ->select(
                 'partial question.{id, createdAt, updatedAt, title}',
-                'partial category.{id, title}'
+                'partial category.{id, title}',
+                'partial tags.{id, title}'
             )
             ->join('question.category', 'category')
+            ->leftJoin('question.tags', 'tags')
             ->orderBy('question.updatedAt', 'DESC');
     }
 

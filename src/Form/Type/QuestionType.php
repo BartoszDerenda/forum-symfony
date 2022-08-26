@@ -77,7 +77,7 @@ class QuestionType extends AbstractType
             [
                 'label' => 'label.comment',
                 'required' => true,
-                'attr' => ['max_length' => 2000, 'rows' => '10'],
+                'attr' => ['max_length' => 5000, 'rows' => '10'],
             ]);
         $builder->add(
             'tags',

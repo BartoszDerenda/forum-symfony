@@ -29,7 +29,7 @@ class QuestionService implements QuestionServiceInterface
      * Constructor.
      *
      * @param QuestionRepository     $questionRepository Question repository
-     * @param PaginatorInterface $paginator      Paginator
+     * @param PaginatorInterface     $paginator      Paginator
      */
     public function __construct(QuestionRepository $questionRepository, PaginatorInterface $paginator)
     {

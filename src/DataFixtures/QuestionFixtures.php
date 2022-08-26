@@ -34,7 +34,7 @@ class QuestionFixtures extends AbstractBaseFixtures implements DependentFixtureI
         $this->createMany(100, 'questions', function (int $i) {
             $question = new Question();
             $question->setTitle($this->faker->sentence(2));
-            $question->setComment($this->faker->sentence(50));
+            $question->setComment($this->faker->sentence(500));
             $question->setCreatedAt(
                 DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')

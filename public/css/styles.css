@@ -19,10 +19,32 @@ hr {
     overflow-wrap: break-word;
 }
 
-.post-border {
+.post-question {
+    padding: 14px 18px 14px 18px;
+    background: #e3fbfd;
+    border: 2px solid #414141;
+    box-shadow: 0 2px 2px -1px gray;
+    border-collapse: separate;
+    border-spacing: 15px;
+}
+
+.post-answer {
     padding: 14px 18px 14px 18px;
     background: #f8f8f8;
-    border: 2px solid #414141;
+    border-right: 2px solid #414141;
+    border-bottom: 2px solid #414141;
+    border-left: 2px solid #414141;
+    box-shadow: 0 2px 2px -1px gray;
+    border-collapse: separate;
+    border-spacing: 15px;
+}
+
+.post-bestanswer {
+    padding: 14px 18px 14px 18px;
+    background: #f8f8f8;
+    border-right: 2px solid #414141;
+    border-bottom: 2px solid #414141;
+    border-left: 2px solid #414141;
     box-shadow: 0 2px 2px -1px gray;
     border-collapse: separate;
     border-spacing: 15px;

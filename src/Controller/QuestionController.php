@@ -7,6 +7,7 @@ namespace App\Controller;
 
 use App\Entity\Question;
 use App\Entity\User;
+use App\Service\AnswerServiceInterface;
 use App\Service\QuestionServiceInterface;
 use App\Form\Type\QuestionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -29,6 +30,13 @@ class QuestionController extends AbstractController
     private QuestionServiceInterface $questionService;
 
     /**
+     * Answer service.
+     *
+     * @var AnswerServiceInterface
+     */
+    private AnswerServiceInterface $answerService;
+
+    /**
      * Translator.
      *
      * @var TranslatorInterface
@@ -38,9 +46,10 @@ class QuestionController extends AbstractController
     /**
      * Constructor.
      */
-    public function __construct(QuestionServiceInterface $questionService, TranslatorInterface $translator)
+    public function __construct(QuestionServiceInterface $questionService, AnswerServiceInterface $answerService, TranslatorInterface $translator)
     {
         $this->questionService = $questionService;
+        $this->answerService = $answerService;
         $this->translator = $translator;
     }
 
@@ -74,9 +83,14 @@ class QuestionController extends AbstractController
         requirements: ['id' => '[1-9]\d*'],
         methods: 'GET'
     )]
-    public function show(Question $question): Response
+    public function show(Question $question, Request $request): Response
     {
-        return $this->render('question/show.html.twig', ['question' => $question]);
+        $pagination = $this->answerService->getPaginatedList(
+            $request->query->getInt('page', 1),
+            $question
+        );
+
+        return $this->render('question/show.html.twig', ['question' => $question, 'pagination' => $pagination]);
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Repository\AnswerRepository;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeImmutable;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Answer.
@@ -31,7 +32,7 @@ class Answer
      *
      * @var string|null
      */
-    #[ORM\Column(length: 2000)]
+    #[ORM\Column(length: 5000)]
     private ?string $comment = null;
 
     /**
@@ -75,7 +76,8 @@ class Answer
      * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
+    #[Assert\Type(User::class)]
     private ?User $author = null;
 
 

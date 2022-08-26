@@ -63,7 +63,7 @@ class Question
      *
      * @var string|null
      */
-    #[ORM\Column(length: 2000)]
+    #[ORM\Column(length: 5000)]
     private ?string $comment = null;
 
 
@@ -94,20 +94,12 @@ class Question
     private ?string $image = null;
 
     /**
-     * Answer.
-     *
-     */
-    #[ORM\OneToMany(mappedBy: 'answer', targetEntity: Answer::class)]
-    private $answer;
-
-    /**
      * Author.
      *
      * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: true)]
-    #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;
 

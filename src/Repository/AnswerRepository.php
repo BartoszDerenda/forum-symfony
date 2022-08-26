@@ -6,9 +6,11 @@
 namespace App\Repository;
 
 use App\Entity\Answer;
+use App\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+
 
 /**
  * Class AnswerRepository.
@@ -24,6 +26,17 @@ use Doctrine\Persistence\ManagerRegistry;
 class AnswerRepository extends ServiceEntityRepository
 {
     /**
+     * Items per page.
+     *
+     * Use constants to define configuration options that rarely change instead
+     * of specifying them in configuration files.
+     * See https://symfony.com/doc/current/best_practices.html#configuration
+     *
+     * @constant int
+     */
+    public const PAGINATOR_ITEMS_PER_PAGE = 10;
+
+    /**
      * Constructor.
      *
      * @param ManagerRegistry $registry Manager registry
@@ -38,15 +51,15 @@ class AnswerRepository extends ServiceEntityRepository
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder
      */
-    public function queryAll(): QueryBuilder
+    public function queryAll(Question $question): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
-                'partial answer.{id, createdAt, updatedAt, comment}',
-                'partial question.{id, title}'
+                'partial answer.{id, question, createdAt, updatedAt, comment, image}',
             )
-            ->join('answer.question', '')
-            ->orderBy('answer.createdAt', 'DESC');
+            ->where('answer.question = :question_id')
+            ->setParameter('question_id', $question)
+            ->orderBy('answer.createdAt', 'ASC');
     }
 
     /**
