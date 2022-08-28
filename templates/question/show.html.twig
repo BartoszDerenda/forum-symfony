@@ -48,16 +48,27 @@
         </div>
         {% if pagination is defined and pagination.items|length %}
             {% for answer in pagination.items %}
-                <div class="post-answer">
+                {% if answer.bestanswer %}
+                        <div class="post-bestanswer">
+                    {% else %}
+                        <div class="post-answer">
+                {% endif %}
                     <dl class="dl-horizontal">
                         <dt>{{ 'label.id'|trans }}</dt>
                         <dd>{{ answer.id }}</dd>
                         <dt>{{ 'label.author'|trans }}</dt>
-                        {% if pagination.author is defined %}
-                            <dd>{{ answer.author }}</dd>
+                        {% if answer.author.nickname is defined %}
+                            <dd>{{ answer.author.nickname }}</dd>
                         {% else %}
                             <dd>Anonymous</dd>
                         {% endif %}
+                      {% if is_granted('AWARD', question) or is_granted('ROLE_ADMIN') %}
+                        <dd></dd>
+                        <dt></dt>
+                            <a class="btn btn-primary btn-sm" type="button" href="{{ url('answer_award', {id: answer.id}) }}" title="{{ 'action.best_answer'|trans }}">
+                                {{ 'action.best_answer'|trans }}
+                            </a>
+                      {% endif %}
                     </dl>
                     <hr>
                     <dl>
@@ -72,6 +83,18 @@
                         <dd>{{ answer.createdAt|format_date('long') }}</dd>
                         <dt>{{ 'label.updated_at'|trans }}</dt>
                         <dd>{{ answer.updatedAt|format_date('long') }}</dd>
+                        {% if is_granted('EDIT', answer) %}
+                        <dt></dt>
+                            <a class="btn btn-primary btn-sm" type="button" href="{{ url('answer_edit', {id: answer.id}) }}" title="{{ 'action.edit'|trans }}">
+                                {{ 'action.edit'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('DELETE', answer) %}
+                        <dt></dt>
+                            <a class="btn btn-primary btn-sm make-smaller" type="button" href="{{ url('answer_delete', {id: answer.id}) }}" title="{{ 'action.delete'|trans }}">
+                                {{ 'action.delete'|trans }}
+                            </a>
+                        {% endif %}
                     </dl>
                 </div>
             {% endfor %}

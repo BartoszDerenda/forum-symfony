@@ -1,21 +1,20 @@
 <?php
 /**
- * Answer type.
+ * Award type.
  */
 
 namespace App\Form\Type;
 
 use App\Entity\Answer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class AnswerType.
  */
-class AnswerType extends AbstractType
+class AwardType extends AbstractType
 {
     /**
      * Builds the form.
@@ -31,20 +30,9 @@ class AnswerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add(
-            'comment',
-            TextareaType::class,
-            [
-                'label' => 'label.comment',
-                'required' => true,
-                'attr' => ['max_length' => 5000, 'rows' => '10'],
-            ]);
-        $builder->add(
-            'image',
-            FileType::class,
-            array(
-                'data_class' => null,'required' => false
-            ));
-
+            'bestAnswer',
+            EnumType::class,
+            array('data_class' => null));
     }
 
     /**

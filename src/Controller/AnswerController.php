@@ -10,6 +10,7 @@ use App\Entity\Question;
 use App\Entity\User;
 use App\Form\Type\AnswerType;
 use App\Service\AnswerServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -106,6 +107,7 @@ class AnswerController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'answer_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('EDIT', subject: 'answer')]
     public function edit(Request $request, Answer $answer): Response
     {
         $form = $this->createForm(
@@ -119,6 +121,15 @@ class AnswerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $request->files->get('answer')['image'];
+            if ($file) {
+                $filename = md5(uniqid()) . '.' . $file->guessClientExtension();
+
+                $file->move(
+                    $this->getParameter('uploads_dir'), $filename
+                );
+                $answer->setImage($filename);
+            }
             $this->answerService->save($answer);
 
             $this->addFlash(
@@ -147,6 +158,7 @@ class AnswerController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'answer_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('DELETE', subject: 'answer')]
     public function delete(Request $request, Answer $answer): Response
     {
         $form = $this->createForm(
@@ -167,11 +179,97 @@ class AnswerController extends AbstractController
                 $this->translator->trans('message.deleted_successfully')
             );
 
-            return $this->redirectToRoute('question_index');
+            return $this->redirectToRoute('question_show', ['id' => $answer->getQuestion()->getId()]);
         }
 
         return $this->render(
             'answer/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'answer' => $answer,
+            ]
+        );
+    }
+
+    /**
+     * Award action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Answer $answer Answer entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route('/{id}/award', name: 'answer_award', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('AWARD', subject: 'answer')]
+    public function award(Request $request, Answer $answer): Response
+    {
+        $form = $this->createForm(
+            FormType::class,
+            $answer,
+            [
+                'method' => 'PUT',
+                'action' => $this->generateUrl('answer_award', ['id' => $answer->getId()]),
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->answerService->award($answer);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.awarded_successfuly')
+            );
+
+            return $this->redirectToRoute('question_index');
+        }
+
+        return $this->render(
+            'answer/award.html.twig',
+            [
+                'form' => $form->createView(),
+                'answer' => $answer,
+            ]
+        );
+    }
+
+    /**
+     * Deaward action.
+     *
+     * @param Request  $request  HTTP request
+     * @param Answer $answer Answer entity
+     *
+     * @return Response HTTP response
+     */
+    #[Route('/{id}/award', name: 'answer_award', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('AWARD', subject: 'answer')]
+    public function deaward(Request $request, Answer $answer): Response
+    {
+        $form = $this->createForm(
+            FormType::class,
+            $answer,
+            [
+                'method' => 'PUT',
+                'action' => $this->generateUrl('answer_award', ['id' => $answer->getId()]),
+            ]
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->answerService->deaward($answer);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.awarded_successfuly')
+            );
+
+            return $this->redirectToRoute('question_index');
+        }
+
+        return $this->render(
+            'answer/award.html.twig',
             [
                 'form' => $form->createView(),
                 'answer' => $answer,

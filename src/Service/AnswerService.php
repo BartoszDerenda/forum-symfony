@@ -48,7 +48,7 @@ class AnswerService implements AnswerServiceInterface
     public function getPaginatedList(int $page, Question $question): PaginationInterface
     {
         return $this->paginator->paginate(
-            $this->answerRepository->queryAll($question),
+            $this->answerRepository->queryAnswersForQuestion($question),
             $page,
             AnswerRepository::PAGINATOR_ITEMS_PER_PAGE
         );
@@ -72,5 +72,25 @@ class AnswerService implements AnswerServiceInterface
     public function delete(Answer $answer): void
     {
         $this->answerRepository->delete($answer);
+    }
+
+    /**
+     * Award entity.
+     *
+     * @param Answer $answer Answer entity
+     */
+    public function award(Answer $answer): void
+    {
+        $this->answerRepository->award($answer);
+    }
+
+    /**
+     * Deaward entity.
+     *
+     * @param Answer $answer Answer entity
+     */
+    public function deaward(Answer $answer): void
+    {
+        $this->answerRepository->deaward($answer);
     }
 }

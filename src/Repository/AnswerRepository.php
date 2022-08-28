@@ -51,11 +51,11 @@ class AnswerRepository extends ServiceEntityRepository
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder
      */
-    public function queryAll(Question $question): QueryBuilder
+    public function queryAnswersForQuestion(Question $question): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
-                'partial answer.{id, question, createdAt, updatedAt, comment, image}',
+                'partial answer.{id, question, createdAt, updatedAt, comment, image, best_answer}',
             )
             ->where('answer.question = :question_id')
             ->setParameter('question_id', $question)
@@ -94,6 +94,38 @@ class AnswerRepository extends ServiceEntityRepository
     {
         $this->_em->remove($answer);
         $this->_em->flush();
+    }
+
+    /**
+     * Award entity.
+     *
+     */
+    public function award(Answer $answer): void
+    {
+        $queryBuilder = $this->_em->createQueryBuilder();
+        $queryBuilder
+            ->update('App\Entity\Answer', 'a')
+            ->set('a.best_answer', 1)
+            ->where('a.id = :id')
+            ->setParameter(':id', $answer)
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * Deaward entity.
+     *
+     */
+    public function deaward(Answer $answer): void
+    {
+        $queryBuilder = $this->_em->createQueryBuilder();
+        $queryBuilder
+            ->update('App\Entity\Answer', 'a')
+            ->set('a.best_answer', 0)
+            ->where('a.id = :id')
+            ->setParameter(':id', $answer)
+            ->getQuery()
+            ->execute();
     }
 
 //    /**

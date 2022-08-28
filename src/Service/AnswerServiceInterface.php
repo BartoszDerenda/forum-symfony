@@ -36,4 +36,18 @@ interface AnswerServiceInterface
      * @param Answer $answer Answer entity
      */
     public function delete(Answer $answer): void;
+
+    /**
+     * Award entity.
+     *
+     * @param Answer $answer Answer entity
+     */
+    public function award(Answer $answer): void;
+
+    /**
+     * Deaward entity.
+     *
+     * @param Answer $answer Answer entity
+     */
+    public function deaward(Answer $answer): void;
 }

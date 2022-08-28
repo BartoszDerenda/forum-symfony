@@ -80,6 +80,9 @@ class Answer
     #[Assert\Type(User::class)]
     private ?User $author = null;
 
+    #[ORM\Column(type: 'boolean', options: ['default: 0'])]
+    private ?bool $best_answer = false;
+
 
     public function getId(): ?int
     {
@@ -154,6 +157,18 @@ class Answer
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function isBestAnswer(): ?bool
+    {
+        return $this->best_answer;
+    }
+
+    public function setBestAnswer(bool $best_answer): self
+    {
+        $this->best_answer = $best_answer;
 
         return $this;
     }
