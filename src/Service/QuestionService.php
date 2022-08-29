@@ -5,8 +5,11 @@
 
 namespace App\Service;
 
+use App\Entity\Category;
 use App\Entity\Question;
 use App\Repository\QuestionRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -48,6 +51,24 @@ class QuestionService implements QuestionServiceInterface
     {
         return $this->paginator->paginate(
             $this->questionRepository->queryAll(),
+            $page,
+            QuestionRepository::PAGINATOR_ITEMS_PER_PAGE
+        );
+    }
+
+    /**
+     * Get paginated list by category.
+     *
+     * @param int $page
+     * @param Category $category
+     * @return PaginationInterface
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function queryByCategory(int $page, Category $category): PaginationInterface
+    {
+        return $this->paginator->paginate(
+            $this->questionRepository->queryByCategory($category),
             $page,
             QuestionRepository::PAGINATOR_ITEMS_PER_PAGE
         );

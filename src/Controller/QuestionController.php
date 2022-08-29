@@ -5,6 +5,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Question;
 use App\Entity\User;
 use App\Service\AnswerServiceInterface;
@@ -91,6 +92,29 @@ class QuestionController extends AbstractController
         );
 
         return $this->render('question/show.html.twig', ['question' => $question, 'pagination' => $pagination]);
+    }
+
+    /**
+     * Show by category action.
+     *
+     * @param Category $category Category
+     *
+     * @return Response HTTP response
+     */
+    #[Route(
+        '/category/{id}',
+        name: 'question_show_by_category',
+        requirements: ['id' => '[1-9]\d*'],
+        methods: 'GET'
+    )]
+    public function showByCategory(Category $category, Request $request): Response
+    {
+        $pagination = $this->questionService->queryByCategory(
+            $request->query->getInt('page', 1),
+            $category
+        );
+
+        return $this->render('question/category.html.twig', ['category' => $category, 'pagination' => $pagination]);
     }
 
     /**

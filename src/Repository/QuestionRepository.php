@@ -51,7 +51,7 @@ class QuestionRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @return QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
@@ -64,6 +64,26 @@ class QuestionRepository extends ServiceEntityRepository
             ->join('question.category', 'category')
             ->leftJoin('question.tags', 'tags')
             ->orderBy('question.updatedAt', 'DESC');
+    }
+
+    /**
+     * Query all records.
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryByCategory(Category $category): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select(
+                'partial question.{id, createdAt, updatedAt, title}',
+                'partial category.{id, title}',
+                'partial tags.{id, title}'
+            )
+            ->join('question.category', 'category')
+            ->leftJoin('question.tags', 'tags')
+            ->orderBy('question.updatedAt', 'DESC')
+            ->where('category.id = :id')
+            ->setParameter(':id', $category);
     }
 
     /**
