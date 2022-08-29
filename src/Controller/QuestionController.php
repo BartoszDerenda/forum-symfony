@@ -151,15 +151,6 @@ class QuestionController extends AbstractController
     #[IsGranted('EDIT', subject: 'question')]
     public function edit(Request $request, Question $question): Response
     {
-        if ($question->getAuthor() !== $this->getUser()) {
-            $this->addFlash(
-                'warning',
-                $this->translator->trans('message.no_permission')
-            );
-
-            return $this->redirectToRoute('question_index');
-        }
-
         $form = $this->createForm(
             QuestionType::class,
             $question,
@@ -211,15 +202,6 @@ class QuestionController extends AbstractController
     #[IsGranted('DELETE', subject: 'question')]
     public function delete(Request $request, Question $question): Response
     {
-        if ($question->getAuthor() !== $this->getUser()) {
-            $this->addFlash(
-                'warning',
-                $this->translator->trans('message.no_permission')
-            );
-
-            return $this->redirectToRoute('question_index');
-        }
-
         $form = $this->createForm(
             FormType::class,
             $question,

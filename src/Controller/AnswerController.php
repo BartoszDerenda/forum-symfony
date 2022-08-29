@@ -192,24 +192,23 @@ class AnswerController extends AbstractController
     }
 
     /**
-     * Award action.
+     * Mark action.
      *
      * @param Request  $request  HTTP request
      * @param Answer $answer Answer entity
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/award', name: 'answer_award', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/{id}/mark', name: 'answer_mark', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     #[IsGranted('AWARD', subject: 'answer')]
-    public function award(Request $request, Answer $answer): Response
+    public function mark(Request $request, Answer $answer): Response
     {
         $form = $this->createForm(
             FormType::class,
             $answer,
             [
                 'method' => 'PUT',
-                'action' => $this->generateUrl('answer_award', ['id' => $answer->getId()]),
+                'action' => $this->generateUrl('answer_mark', ['id' => $answer->getId()]),
             ]
         );
         $form->handleRequest($request);
@@ -219,14 +218,14 @@ class AnswerController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.awarded_successfuly')
+                $this->translator->trans('message.awarded_successfully')
             );
 
-            return $this->redirectToRoute('question_index');
+            return $this->redirectToRoute('question_show', ['id' => $answer->getQuestion()->getId()]);
         }
 
         return $this->render(
-            'answer/award.html.twig',
+            'answer/mark.html.twig',
             [
                 'form' => $form->createView(),
                 'answer' => $answer,
@@ -235,24 +234,23 @@ class AnswerController extends AbstractController
     }
 
     /**
-     * Deaward action.
+     * Unmark action.
      *
      * @param Request  $request  HTTP request
      * @param Answer $answer Answer entity
      *
      * @return Response HTTP response
      */
-    #[Route('/{id}/award', name: 'answer_award', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
-    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/{id}/unmark', name: 'answer_unmark', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     #[IsGranted('AWARD', subject: 'answer')]
-    public function deaward(Request $request, Answer $answer): Response
+    public function unmark(Request $request, Answer $answer): Response
     {
         $form = $this->createForm(
             FormType::class,
             $answer,
             [
                 'method' => 'PUT',
-                'action' => $this->generateUrl('answer_award', ['id' => $answer->getId()]),
+                'action' => $this->generateUrl('answer_unmark', ['id' => $answer->getId()]),
             ]
         );
         $form->handleRequest($request);
@@ -262,14 +260,14 @@ class AnswerController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.awarded_successfuly')
+                $this->translator->trans('message.unmarked_successfully')
             );
 
-            return $this->redirectToRoute('question_index');
+            return $this->redirectToRoute('question_show', ['id' => $answer->getQuestion()->getId()]);
         }
 
         return $this->render(
-            'answer/award.html.twig',
+            'answer/unmark.html.twig',
             [
                 'form' => $form->createView(),
                 'answer' => $answer,

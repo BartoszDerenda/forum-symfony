@@ -134,6 +134,12 @@ class QuestionVoter extends Voter
      */
     private function canDelete(Question $question, User $user): bool
     {
-        return $question->getAuthor() === $user;
+        if ($this->security->isGranted('ROLE_ADMIN') or $question->getAuthor() === $user)
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

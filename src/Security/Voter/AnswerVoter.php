@@ -156,13 +156,19 @@ class AnswerVoter extends Voter
     /**
      * Checks if user can award an answer.
      *
-     * @param Question $question Question entity
+     * @param Answer $answer Answer entity
      * @param User $user User
      *
      * @return bool Result
      */
-    private function canAward(Question $question, User $user): bool
+    private function canAward(Answer $answer, User $user): bool
     {
-        return $question->getAuthor() === $user;
+        if ($this->security->isGranted('ROLE_ADMIN') or $answer->getQuestion()->getAuthor() === $user)
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

@@ -1,21 +1,20 @@
 <?php
 /**
- * Question fixtures.
+ * Answer fixtures.
  */
 
 namespace App\DataFixtures;
 
-use App\Entity\Category;
-use App\Entity\Tags;
+use App\Entity\Answer;
 use App\Entity\Question;
 use App\Entity\User;
 use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
- * Class QuestionFixtures.
+ * Class AnswerFixtures.
  */
-class QuestionFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
+class AnswerFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
      * Load data.
@@ -30,40 +29,29 @@ class QuestionFixtures extends AbstractBaseFixtures implements DependentFixtureI
             return;
         }
 
-        $this->createMany(33, 'questions', function (int $i) {
-            $question = new Question();
-            $question->setTitle($this->faker->sentence(2));
-            $question->setComment($this->faker->sentence(500));
-            $question->setCreatedAt(
+        $this->createMany(1000, 'answers', function (int $i) {
+            $answer = new Answer();
+            $answer->setComment($this->faker->sentence(100));
+            $answer->setCreatedAt(
                 DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
-            $question->setUpdatedAt(
+            $answer->setUpdatedAt(
                 DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
 
-            /** @var Category $category */
-            $category = $this->getRandomReference('categories');
-            $question->setCategory($category);
-
-            /** @var array<array-key, Tags> $tags */
-            $tags = $this->getRandomReferences(
-                'tags',
-                $this->faker->numberBetween(0, 5)
-            );
-            foreach ($tags as $tag) {
-                $question->addTag($tag);
-            }
-
+            /** @var Question $question */
+            $question = $this->getRandomReference('questions');
+            $answer->setQuestion($question);
 
             /** @var User $author */
             $author = $this->getRandomReference('users');
-            $question->setAuthor($author);
+            $answer->setAuthor($author);
 
-            return $question;
+            return $answer;
         });
 
         $this->manager->flush();
@@ -75,10 +63,10 @@ class QuestionFixtures extends AbstractBaseFixtures implements DependentFixtureI
      *
      * @return string[] of dependencies
      *
-     * @psalm-return array{0: CategoryFixtures::class, 1: TagsFixtures::class, 2: UserFixtures::class}
+     * @psalm-return array{0: QuestionFixtures::class, 1: UserFixtures::class}
      */
     public function getDependencies(): array
     {
-        return [CategoryFixtures::class, TagsFixtures::class, UserFixtures::class];
+        return [QuestionFixtures::class, UserFixtures::class];
     }
 }

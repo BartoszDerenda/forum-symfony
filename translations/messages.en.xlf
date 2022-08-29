@@ -206,6 +206,54 @@
                 <source>title.tags_details</source>
                 <target>Tag's details</target>
             </trans-unit>
+            <trans-unit id="message.answer_created_successfully">
+                <source>message.answer_created_successfully</source>
+                <target>Answer was created successfully!</target>
+            </trans-unit>
+            <trans-unit id="message.awarded_successfully">
+                <source>message.awarded_successfully</source>
+                <target>Answer was awarded successfully!</target>
+            </trans-unit>
+            <trans-unit id="title.answer_create">
+                <source>title.answer_create</source>
+                <target>Create answer</target>
+            </trans-unit>
+            <trans-unit id="title.answer_delete">
+                <source>title.answer_delete</source>
+                <target>Delete answer</target>
+            </trans-unit>
+            <trans-unit id="title.answer_edit">
+                <source>title.answer_edit</source>
+                <target>Edit answer</target>
+            </trans-unit>
+            <trans-unit id="title.answer_mark">
+                <source>title.answer_mark</source>
+                <target>Award the best answer</target>
+            </trans-unit>
+            <trans-unit id="title.answer_unmark">
+                <source>title.answer_unmark</source>
+                <target>Remove award from the answer</target>
+            </trans-unit>
+            <trans-unit id="label.author">
+                <source>label.author</source>
+                <target>Author:</target>
+            </trans-unit>
+            <trans-unit id="action.answer_this">
+                <source>action.answer_this</source>
+                <target>Answer this!</target>
+            </trans-unit>
+            <trans-unit id="action.mark_best_answer">
+                <source>action.mark_best_answer</source>
+                <target>Best answer</target>
+            </trans-unit>
+            <trans-unit id="action.unmark_best_answer">
+                <source>action.unmark_best_answer</source>
+                <target>Remove the award</target>
+            </trans-unit>
+            <trans-unit id="message.unmarked_successfully">
+                <source>message.unmarked_successfully</source>
+                <target>Answer was successfully unmarked.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

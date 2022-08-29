@@ -62,13 +62,20 @@
                         {% else %}
                             <dd>Anonymous</dd>
                         {% endif %}
-                      {% if is_granted('AWARD', question) or is_granted('ROLE_ADMIN') %}
+                      {% if (is_granted('AWARD', answer) or is_granted('ROLE_ADMIN')) and answer.bestanswer != 1 %}
                         <dd></dd>
                         <dt></dt>
-                            <a class="btn btn-primary btn-sm" type="button" href="{{ url('answer_award', {id: answer.id}) }}" title="{{ 'action.best_answer'|trans }}">
-                                {{ 'action.best_answer'|trans }}
+                            <a class="btn btn-primary btn-sm" type="button" href="{{ url('answer_mark', {id: answer.id}) }}" title="{{ 'action.mark_best_answer'|trans }}">
+                                {{ 'action.mark_best_answer'|trans }}
                             </a>
                       {% endif %}
+                        {% if (is_granted('AWARD', answer) or is_granted('ROLE_ADMIN')) and answer.bestanswer != 0 %}
+                            <dd></dd>
+                            <dt></dt>
+                            <a class="btn btn-primary btn-sm" type="button" href="{{ url('answer_unmark', {id: answer.id}) }}" title="{{ 'action.unmark_best_answer'|trans }}">
+                                {{ 'action.unmark_best_answer'|trans }}
+                            </a>
+                        {% endif %}
                     </dl>
                     <hr>
                     <dl>
@@ -99,6 +106,9 @@
                 </div>
             {% endfor %}
     {% endif %}
+                            <div class="navigation text-center">
+                                {{ knp_pagination_render(pagination) }}
+                            </div>
         <p>
             <a href="{{ url('question_index') }}" title="{{ 'action.back_to_list'|trans }}">
                 {{ 'action.back_to_list'|trans }}
