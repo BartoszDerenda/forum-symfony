@@ -23,7 +23,9 @@ interface UserServiceInterface
      */
     public function getPaginatedList(int $page): PaginationInterface;
 
+    public function edit(User $user): void;
+
     public function save(User $user): void;
 
-    public function delete(User $user): void;
+    public function remove(User $user): void;
 }

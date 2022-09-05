@@ -3,36 +3,48 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\Type\RegistrationType;
+use App\Form\Type\UserType;
+use App\Service\UserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/register', name: 'app_register')]
-    public function register(Request $request,UserPasswordHasherInterface $passwordHasher , ManagerRegistry $doctrine): Response
+    /**
+     * User service.
+     */
+    private UserServiceInterface $userService;
+
+    /**
+     * Translator.
+     *
+     * @var TranslatorInterface
+     */
+    private TranslatorInterface $translator;
+
+    /**
+     * Constructor.
+     */
+    public function __construct(UserServiceInterface $userService, TranslatorInterface $translator)
     {
-        $form = $this->createFormBuilder()
-            ->add('email')
-            ->add('username')
-            ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'required' => true,
-                'first_options' => ['label' => 'Password'],
-                'second_options' => ['label' => 'Confirm Password']
-            ])
-            ->add('register', SubmitType::class, [
-                'attr' => [
-                    'class' => 'btn btn-success float-right'
-                ]
-            ])
-            ->getForm();
+        $this->userService = $userService;
+        $this->translator = $translator;
+    }
+
+    #[Route('/register', name: 'app_register')]
+    public function register(Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        $form = $this->createForm(
+            RegistrationType::class,
+            [
+                'method' => 'PUT',
+                'action' => $this->generateUrl('app_register'),
+            ]);
 
         $form->handleRequest($request);
         if ($form->isSubmitted())
@@ -40,24 +52,25 @@ class RegistrationController extends AbstractController
             $data = $form->getData();
             $user = new User();
             $user->setEmail($data['email']);
-            $user->setNickname($data['username']);
+            $user->setNickname($data['nickname']);
             $user->setRoles(array('ROLE_USER'));
             $user->setPassword(
                 $passwordHasher->hashPassword(
                     $user,
                     $data['password']
-                )
+                ));
+
+            $this->userService->save($user);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.success')
             );
-
-            $em = $doctrine->getManager();
-
-            $em->persist($user);
-            $em->flush();
 
             return $this->redirect($this->generateUrl('app_login'));
         }
 
-        return $this->render('registration/index.html.twig', [
+        return $this->render('security/registration.html.twig', [
             'controller_name' => 'RegistrationController',
             'form' => $form->createView()
         ]);
