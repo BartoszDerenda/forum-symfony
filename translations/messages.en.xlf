@@ -98,21 +98,13 @@
                 <source>action.save</source>
                 <target>Save</target>
             </trans-unit>
-            <trans-unit id="message.created_successfully">
-                <source>message.created_successfully</source>
-                <target>Category created successfully!</target>
+            <trans-unit id="message.success">
+                <source>message.success</source>
+                <target>Success!</target>
             </trans-unit>
             <trans-unit id="title.category_edit">
                 <source>title.category_edit</source>
                 <target>Edit category</target>
-            </trans-unit>
-            <trans-unit id="message.edited_successfully">
-                <source>message.edited_successfully</source>
-                <target>Category edited successfully!</target>
-            </trans-unit>
-            <trans-unit id="message.deleted_successfully">
-                <source>message.deleted_successfully</source>
-                <target>Category deleted successfully!</target>
             </trans-unit>
             <trans-unit id="action.delete">
                 <source>action.delete</source>
@@ -206,14 +198,6 @@
                 <source>title.tags_details</source>
                 <target>Tag's details</target>
             </trans-unit>
-            <trans-unit id="message.answer_created_successfully">
-                <source>message.answer_created_successfully</source>
-                <target>Answer was created successfully!</target>
-            </trans-unit>
-            <trans-unit id="message.awarded_successfully">
-                <source>message.awarded_successfully</source>
-                <target>Answer was awarded successfully!</target>
-            </trans-unit>
             <trans-unit id="title.answer_create">
                 <source>title.answer_create</source>
                 <target>Create answer</target>
@@ -249,10 +233,6 @@
             <trans-unit id="action.unmark_best_answer">
                 <source>action.unmark_best_answer</source>
                 <target>Remove the award</target>
-            </trans-unit>
-            <trans-unit id="message.unmarked_successfully">
-                <source>message.unmarked_successfully</source>
-                <target>Answer was successfully unmarked.</target>
             </trans-unit>
         </body>
     </file>

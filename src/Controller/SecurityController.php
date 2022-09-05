@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -22,6 +21,13 @@ class SecurityController extends AbstractController
     private UserServiceInterface $userService;
 
     /**
+     * Password hasher.
+     *
+     * @var UserPasswordHasherInterface
+     */
+    private UserPasswordHasherInterface $passwordHasher;
+
+    /**
      * Translator.
      *
      * @var TranslatorInterface
@@ -31,10 +37,11 @@ class SecurityController extends AbstractController
     /**
      * Constructor.
      */
-    public function __construct(UserServiceInterface $userService, TranslatorInterface $translator)
+    public function __construct(UserServiceInterface $userService, TranslatorInterface $translator, UserPasswordHasherInterface $passwordHasher)
     {
         $this->userService = $userService;
         $this->translator = $translator;
+        $this->passwordHasher = $passwordHasher;
     }
 
     #[Route(path: '/login', name: 'app_login')]
@@ -80,17 +87,16 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $user->setPassword(
-                $passwordHasher->hashPassword(
-                    $user,
-                    $data['password']
-                ));
+            $hashedPassword = $this->passwordHasher->hashPassword(
+                $user,
+                $user->getPassword()
+            );
+            $user->setPassword($hashedPassword);
             $this->userService->save($user);
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.account_details_edited_successfully')
+                $this->translator->trans('message.success')
             );
 
             return $this->redirectToRoute('question_index');

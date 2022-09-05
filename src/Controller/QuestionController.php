@@ -151,7 +151,7 @@ class QuestionController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.created_successfully')
+                $this->translator->trans('message.success')
             );
 
             return $this->redirectToRoute('question_index');
@@ -199,7 +199,7 @@ class QuestionController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.edited_successfully')
+                $this->translator->trans('message.success')
             );
 
             return $this->redirectToRoute('question_show', ['id' => $question->getId()]);
@@ -241,7 +241,7 @@ class QuestionController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.deleted_successfully')
+                $this->translator->trans('message.success')
             );
 
             return $this->redirectToRoute('question_index');

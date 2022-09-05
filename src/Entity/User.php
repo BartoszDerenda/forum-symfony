@@ -62,7 +62,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @var string|null
      */
-    #[ORM\Column(length: 64)]
+    #[ORM\Column(type: 'string', length: 64)]
     #[Assert\NotBlank]
     private ?string $nickname = null;
 

@@ -55,17 +55,6 @@ class UserService implements UserServiceInterface
     }
 
     /**
-     * Edit entity.
-     *
-     * @param User $user
-     * @return void
-     */
-    public function edit(User $user): void
-    {
-        $this->userRepository->edit($user);
-    }
-
-    /**
      * Save entity.
      *
      * @param User $user
@@ -82,8 +71,19 @@ class UserService implements UserServiceInterface
      * @param User $user
      * @return void
      */
-    public function remove(User $user): void
+    public function delete(User $user): void
     {
-        $this->userRepository->remove($user);
+        $this->userRepository->delete($user);
+    }
+
+    /**
+     * Delete associated entities.
+     *
+     * @param User $user
+     * @return void
+     */
+    public function deleteAssociated(User $user): void
+    {
+        $this->userRepository->deleteAssociated($user);
     }
 }

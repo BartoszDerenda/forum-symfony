@@ -99,7 +99,7 @@ class Question
      * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: true, onDelete: "CASCADE")]
     #[Assert\Type(User::class)]
     private ?User $author;
 

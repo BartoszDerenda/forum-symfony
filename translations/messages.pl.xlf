@@ -102,21 +102,9 @@
                 <source>action.save</source>
                 <target>Zapisz</target>
             </trans-unit>
-            <trans-unit id="message.created_successfully">
-                <source>message.created_successfully</source>
-                <target>Kategoria została utworzona pomyślnie!</target>
-            </trans-unit>
             <trans-unit id="title.category_edit">
                 <source>title.category_edit</source>
                 <target>Zmodyfikuj kategorię</target>
-            </trans-unit>
-            <trans-unit id="message.edited_successfully">
-                <source>message.edited_successfully</source>
-                <target>Kategoria została zmodyfikowana pomyślnie!</target>
-            </trans-unit>
-            <trans-unit id="message.deleted_successfully">
-                <source>message.deleted_successfully</source>
-                <target>Kategoria została usunięta pomyślnie!</target>
             </trans-unit>
             <trans-unit id="action.delete">
                 <source>action.delete</source>
@@ -210,13 +198,9 @@
                 <source>title.tags_details</source>
                 <target>Tag</target>
             </trans-unit>
-            <trans-unit id="message.answer_created_successfully">
-                <source>message.answer_created_successfully</source>
-                <target>Odpowiedź została opublikowana pomyślnie!</target>
-            </trans-unit>
-            <trans-unit id="message.awarded_successfully">
-                <source>message.awarded_successfully</source>
-                <target>Odpowiedź została pomyślnie odznaczona mianem najlepszej!</target>
+            <trans-unit id="message.success">
+                <source>message.success</source>
+                <target>Success!</target>
             </trans-unit>
             <trans-unit id="title.answer_create">
                 <source>title.answer_create</source>
@@ -253,10 +237,6 @@
             <trans-unit id="action.unmark_best_answer">
                 <source>action.unmark_best_answer</source>
                 <target>Usuń odznakę najlepszej odpowiedzi</target>
-            </trans-unit>
-            <trans-unit id="message.unmarked_successfully">
-                <source>message.unmarked_successfully</source>
-                <target>Usunięto odznakę najlepszej odpowiedzi pomyślnie!</target>
             </trans-unit>
         </body>
     </file>

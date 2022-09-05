@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Question;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
@@ -61,9 +62,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select(
-                'user.id, user.email, user.roles'
-            );
+            ->select('user.id, user.nickname, user.email, user.roles');
     }
 
     /**
@@ -80,13 +79,48 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Remove entity.
      */
-    public function remove(User $entity, bool $flush = false): void
+    public function delete(User $user): void
     {
-        $this->getEntityManager()->remove($entity);
+       /* $this->deleteAssociated($user); */
 
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        $this->_em->remove($user);
+        $this->_em->flush();
+    }
+
+    /**
+     * Deletes all records associated to the user.
+     *
+     * @param User $user User entity
+     */
+    public function deleteAssociated(User $user): void
+    {
+        $queryBuilder = $this->getOrCreateQueryBuilder();
+        $temp = $queryBuilder
+            ->select(
+                'partial question.{id, author_id},
+                partial answer.{id, question_id}'
+            )
+            ->join('answer.question', 'question')
+            ->where('question.author_id = :id')
+            ->setParameter(':id', $user);
+
+        $queryBuilder = $this->getOrCreateQueryBuilder();
+        $queryBuilder
+            ->delete($temp, 't');
+        $queryBuilder->getQuery()->execute();
+
+        $queryBuilder = $this->getOrCreateQueryBuilder();
+        $queryBuilder
+            ->delete('App\Entity\Answer', 'a')
+            ->where('a.author = :id')
+            ->setParameter('id', $user->getId());
+        $queryBuilder->getQuery()->execute();
+
+        $queryBuilder
+            ->delete('App\Entity\Question', 'q')
+            ->where('q.author = :id')
+            ->setParameter('id', $user->getId());
+        $queryBuilder->getQuery()->execute();
     }
 
     /**
@@ -100,7 +134,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         $user->setPassword($newHashedPassword);
 
-        $this->add($user, true);
+        $this->save($user, true);
     }
 
 //    /**

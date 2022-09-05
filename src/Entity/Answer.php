@@ -67,7 +67,7 @@ class Answer
      * @var Question|null
      */
     #[ORM\ManyToOne(targetEntity: Question::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?Question $question = null;
 
     /**

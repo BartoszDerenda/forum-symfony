@@ -86,7 +86,7 @@ class AnswerController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.answer_created_successfully')
+                $this->translator->trans('message.success')
             );
 
             return $this->redirectToRoute('question_show', ['id' => $answer->getQuestion()->getId()]);
@@ -134,7 +134,7 @@ class AnswerController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.edited_successfully')
+                $this->translator->trans('message.success')
             );
 
             return $this->redirectToRoute('question_show', ['id' => $answer->getQuestion()->getId()]);
@@ -176,7 +176,7 @@ class AnswerController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.deleted_successfully')
+                $this->translator->trans('message.success')
             );
 
             return $this->redirectToRoute('question_show', ['id' => $answer->getQuestion()->getId()]);
@@ -218,7 +218,7 @@ class AnswerController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.awarded_successfully')
+                $this->translator->trans('message.success')
             );
 
             return $this->redirectToRoute('question_show', ['id' => $answer->getQuestion()->getId()]);
@@ -260,7 +260,7 @@ class AnswerController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('message.unmarked_successfully')
+                $this->translator->trans('message.success')
             );
 
             return $this->redirectToRoute('question_show', ['id' => $answer->getQuestion()->getId()]);

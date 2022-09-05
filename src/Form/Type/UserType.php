@@ -50,7 +50,6 @@ class UserType extends AbstractType
         $builder->add('password', RepeatedType::class,
             [
                 'type' => PasswordType::class,
-                'required' => true,
                 'first_options' => ['label' => 'Nowe hasło'],
                 'second_options' => ['label' => 'Potwierdź nowe hasło']
             ]);
@@ -63,7 +62,7 @@ class UserType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => null]);
+        $resolver->setDefaults(['data_class' => User::class]);
     }
 
     /**
