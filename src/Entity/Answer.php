@@ -76,10 +76,15 @@ class Answer
      * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: true, onDelete: "CASCADE")]
     #[Assert\Type(User::class)]
     private ?User $author = null;
 
+    /**
+     * Best answer.
+     *
+     * @var bool|null
+     */
     #[ORM\Column(type: 'boolean', options: ['default: 0'])]
     private ?bool $best_answer = false;
 

@@ -128,6 +128,15 @@ class AnswerRepository extends ServiceEntityRepository
             ->execute();
     }
 
+    /**
+     * Finds all of user's answers.
+     *
+     */
+    public function findAllByUser()
+    {
+
+    }
+
 //    /**
 //     * @return Answer[] Returns an array of Answer objects
 //     */

@@ -7,6 +7,7 @@ namespace App\Service;
 
 use App\Entity\Answer;
 use App\Entity\Question;
+use App\Entity\User;
 use App\Repository\AnswerRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -92,5 +93,15 @@ class AnswerService implements AnswerServiceInterface
     public function deaward(Answer $answer): void
     {
         $this->answerRepository->deaward($answer);
+    }
+
+    /**
+     * Finds all user's answers and questions.
+     *
+     * @param User $user
+     */
+    public function findAllByUser(User $user)
+    {
+        $this->answerRepository->findAllByUser();
     }
 }

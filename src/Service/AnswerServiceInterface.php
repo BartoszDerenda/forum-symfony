@@ -7,6 +7,7 @@ namespace App\Service;
 
 use App\Entity\Answer;
 use App\Entity\Question;
+use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
@@ -50,4 +51,11 @@ interface AnswerServiceInterface
      * @param Answer $answer Answer entity
      */
     public function deaward(Answer $answer): void;
+
+    /**
+     * Finds all user's answers and questions.
+     *
+     * @param User $user
+     */
+    public function findAllByUser(User $user);
 }

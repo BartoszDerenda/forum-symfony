@@ -27,5 +27,5 @@ interface UserServiceInterface
 
     public function delete(User $user): void;
 
-    public function deleteAssociated(User $user): void;
+    public function deleteUserWithHeritage(User $user): void;
 }

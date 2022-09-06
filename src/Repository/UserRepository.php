@@ -2,16 +2,14 @@
 
 namespace App\Repository;
 
-use App\Entity\Question;
 use App\Entity\User;
+use App\Service\AnswerServiceInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @extends ServiceEntityRepository<User>
@@ -35,11 +33,17 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public const PAGINATOR_ITEMS_PER_PAGE = 8;
 
     /**
+     * Answer service.
+     */
+    private AnswerServiceInterface $answerService;
+
+    /**
      * Constructor.
      */
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, AnswerServiceInterface $answerService)
     {
         parent::__construct($registry, User::class);
+        $this->answerService = $answerService;
     }
 
     /**
@@ -81,46 +85,25 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      */
     public function delete(User $user): void
     {
-       /* $this->deleteAssociated($user); */
-
         $this->_em->remove($user);
         $this->_em->flush();
     }
 
     /**
-     * Deletes all records associated to the user.
+     * Deletes user with it's associated entities.
      *
-     * @param User $user User entity
+     * @param User $user
+     * @return void
      */
-    public function deleteAssociated(User $user): void
+    public function deleteUserWithHeritage(User $user): void
     {
-        $queryBuilder = $this->getOrCreateQueryBuilder();
-        $temp = $queryBuilder
-            ->select(
-                'partial question.{id, author_id},
-                partial answer.{id, question_id}'
-            )
-            ->join('answer.question', 'question')
-            ->where('question.author_id = :id')
-            ->setParameter(':id', $user);
-
-        $queryBuilder = $this->getOrCreateQueryBuilder();
-        $queryBuilder
-            ->delete($temp, 't');
-        $queryBuilder->getQuery()->execute();
-
-        $queryBuilder = $this->getOrCreateQueryBuilder();
-        $queryBuilder
-            ->delete('App\Entity\Answer', 'a')
-            ->where('a.author = :id')
-            ->setParameter('id', $user->getId());
-        $queryBuilder->getQuery()->execute();
-
-        $queryBuilder
-            ->delete('App\Entity\Question', 'q')
-            ->where('q.author = :id')
-            ->setParameter('id', $user->getId());
-        $queryBuilder->getQuery()->execute();
+        $answers = $this->answerService->findAllByUser($user);
+        if (!$answers->isEmpty()) {
+            foreach ($answers as $answer) {
+                $this->answerService->delete($answer);
+            }
+        }
+        $this->delete($user);
     }
 
     /**
@@ -136,29 +119,4 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         $this->save($user, true);
     }
-
-//    /**
-//     * @return User[] Returns an array of User objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('u.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?User
-//    {
-//        return $this->createQueryBuilder('u')
-//            ->andWhere('u.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }
