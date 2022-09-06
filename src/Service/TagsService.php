@@ -7,6 +7,7 @@ namespace App\Service;
 
 use App\Entity\Tags;
 use App\Repository\TagsRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -79,6 +80,7 @@ class TagsService implements TagsServiceInterface
      * @param string $title Tag title
      *
      * @return Tags|null Tag entity
+     * @throws NonUniqueResultException
      */
     public function findOneByTitle(string $title): ?Tags
     {

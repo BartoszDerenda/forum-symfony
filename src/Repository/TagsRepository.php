@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Tags;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -41,7 +42,7 @@ class TagsRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @return QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
@@ -106,11 +107,11 @@ class TagsRepository extends ServiceEntityRepository
     /**
      * Find one by title.
      *
-     * @param $value
+     * @param string $value
      * @return Tags|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    public function findOneByTitle($value): ?Tags
+    public function findOneByTitle(string $value): ?Tags
     {
         return $this->createQueryBuilder('tags')
             ->andWhere('tags.title = :title')

@@ -43,10 +43,10 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ url('question_show', {id: question.id}) }}" title="{{ 'action.show'|trans }}">{{ 'action.show'|trans }}</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                {% if is_granted('EDIT') %}
+                                {% if is_granted('EDIT', question) %}
                                 <li><a class="dropdown-item" href="{{ url('question_edit', {id: question.id}) }}" title="{{ 'action.edit'|trans }}">{{ 'action.edit'|trans }}</a></li>
                                 {% endif %}
-                                {% if is_granted('ROLE_ADMIN') or is_granted('DELETE') %}
+                                {% if is_granted('ROLE_ADMIN') or is_granted('DELETE', question) %}
                                 <li><a class="dropdown-item" href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'action.delete'|trans }}">{{ 'action.delete'|trans }}</a></li>
                                 {% endif %}
                             </ul>

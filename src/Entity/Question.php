@@ -35,46 +35,46 @@ class Question
     /**
      * Created at.
      *
-     * @var DateTimeImmutable|null
+     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?DateTimeImmutable $createdAt;
+    private DateTimeImmutable $createdAt;
 
     /**
      * Updated at.
      *
-     * @var DateTimeImmutable|null
+     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
-    private ?DateTimeImmutable $updatedAt;
+    private DateTimeImmutable $updatedAt;
 
     /**
      * Title.
      *
-     * @var string|null
+     * @var string
      */
     #[ORM\Column(type: 'string', length: 255)]
-    private ?string $title = null;
+    private string $title;
 
     /**
      * Comment
      *
-     * @var string|null
+     * @var string
      */
     #[ORM\Column(length: 5000)]
-    private ?string $comment = null;
+    private string $comment;
 
 
     /**
      * Category.
      *
-     * @var Category|null
+     * @var Category
      */
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Category $category = null;
+    private Category $category;
 
     /**
      * Tags.
@@ -103,7 +103,6 @@ class Question
     #[Assert\Type(User::class)]
     private ?User $author;
 
-
     /**
      * Constructor.
      *
@@ -111,7 +110,6 @@ class Question
     public function __construct()
     {
         $this->tags = new ArrayCollection();
-        $this->answer = new ArrayCollection();
     }
 
     /**
@@ -275,17 +273,20 @@ class Question
     }
 
     /**
-     * @return Collection<int, Answer>
+     * Getter for answer.
+     *
+     * @param Answer $answer
+     * @return Collection
      */
-    public function getAnswer(): Collection
+    public function getAnswer(Answer $answer): Collection
     {
-        return $this->answer;
+        return $this->$answer;
     }
 
     public function addAnswer(Answer $answer): self
     {
-        if (!$this->answer->contains($answer)) {
-            $this->answer->add($answer);
+        if (!$this->$answer->contains($answer)) {
+            $this->$answer->add($answer);
             $answer->setQuestion($this);
         }
 
@@ -294,7 +295,7 @@ class Question
 
     public function removeAnswer(Answer $answer): self
     {
-        if ($this->answer->removeElement($answer)) {
+        if ($this->$answer->removeElement($answer)) {
             // set the owning side to null (unless already changed)
             if ($answer->getQuestion() === $this) {
                 $answer->setQuestion(null);

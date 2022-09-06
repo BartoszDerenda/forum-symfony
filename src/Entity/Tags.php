@@ -24,42 +24,42 @@ class Tags
     /**
      * Title.
      *
-     * @var string|null
+     * @var string
      */
     #[ORM\Column(type: 'string', length: 32)]
     #[Assert\Type('string')]
     #[Assert\NotBlank]
     #[Assert\Length(min: 3, max: 32)]
-    private ?string $title = null;
+    private string $title;
 
     /**
      * Created at.
      *
-     * @var DateTimeImmutable|null
+     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?DateTimeImmutable $createdAt;
+    private DateTimeImmutable $createdAt;
 
     /**
      * Updated at.
      *
-     * @var DateTimeImmutable|null
+     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
-    private ?DateTimeImmutable $updatedAt;
+    private DateTimeImmutable $updatedAt;
 
     /**
      * Slug.
      *
-     * @var string|null
+     * @var string
      */
     #[ORM\Column(type: 'string', length: 32)]
     #[Assert\Type('string')]
     #[Assert\Length(min: 3, max: 32)]
     #[Gedmo\Slug(fields: ['title'])]
-    private ?string $slug = null;
+    private string $slug;
 
     public function getId(): ?int
     {
@@ -78,24 +78,24 @@ class Tags
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

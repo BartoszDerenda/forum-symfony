@@ -33,43 +33,44 @@ class Category
     /**
      * Created at.
      *
-     * @var DateTimeImmutable|null
+     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?DateTimeImmutable $createdAt;
+    private DateTimeImmutable $createdAt;
 
     /**
      * Updated at.
      *
-     * @var DateTimeImmutable|null
+     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'update')]
-    private ?DateTimeImmutable $updatedAt;
+    private DateTimeImmutable $updatedAt;
 
     /**
      * Title.
      *
-     * @var string|null
+     * @var string
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
     #[Assert\NotBlank]
     #[Assert\Length(min: 3, max: 64)]
-    private ?string $title;
+    private string $title;
 
     /**
      * Slug.
-     * @var string|null
+     *
+     * @var string
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Assert\Type('string')]
     #[Assert\Length(min: 3, max: 64)]
     #[Gedmo\Slug(fields: ['title'])]
-    private ?string $slug;
+    private string $slug;
 
     /**
      * Getter for Id.

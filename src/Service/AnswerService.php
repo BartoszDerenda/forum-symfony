@@ -94,14 +94,4 @@ class AnswerService implements AnswerServiceInterface
     {
         $this->answerRepository->deaward($answer);
     }
-
-    /**
-     * Finds all user's answers and questions.
-     *
-     * @param User $user
-     */
-    public function findAllByUser(User $user)
-    {
-        $this->answerRepository->findAllByUser();
-    }
 }

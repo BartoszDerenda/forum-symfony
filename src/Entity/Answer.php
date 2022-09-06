@@ -30,10 +30,10 @@ class Answer
     /**
      * Comment.
      *
-     * @var string|null
+     * @var string
      */
     #[ORM\Column(length: 5000)]
-    private ?string $comment = null;
+    private string $comment;
 
     /**
      * Image.
@@ -46,29 +46,29 @@ class Answer
     /**
      * Created at.
      *
-     * @var DateTimeImmutable|null
+     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?DateTimeImmutable $createdAt;
+    private DateTimeImmutable $createdAt;
 
     /**
      * Updated at.
      *
-     * @var DateTimeImmutable|null
+     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
-    private ?DateTimeImmutable $updatedAt;
+    private DateTimeImmutable $updatedAt;
 
     /**
      * Question.
      *
-     * @var Question|null
+     * @var Question
      */
     #[ORM\ManyToOne(targetEntity: Question::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
-    private ?Question $question = null;
+    private Question $question;
 
     /**
      * Author.
@@ -83,10 +83,10 @@ class Answer
     /**
      * Best answer.
      *
-     * @var bool|null
+     * @var bool
      */
     #[ORM\Column(type: 'boolean', options: ['default: 0'])]
-    private ?bool $best_answer = false;
+    private bool $best_answer = false;
 
 
     public function getId(): ?int

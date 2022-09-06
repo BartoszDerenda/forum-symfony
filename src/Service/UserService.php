@@ -75,16 +75,4 @@ class UserService implements UserServiceInterface
     {
         $this->userRepository->delete($user);
     }
-
-    /**
-     * Delete User with all associated entities.
-     *
-     * @param User $user
-     * @return void
-     * @throws \Exception
-     */
-    public function deleteUserWithHeritage(User $user): void
-    {
-        $this->userRepository->deleteUserWithHeritage($user);
-    }
 }

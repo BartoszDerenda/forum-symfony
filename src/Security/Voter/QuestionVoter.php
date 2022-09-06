@@ -10,7 +10,6 @@ use App\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class QuestionVoter.
@@ -63,7 +62,7 @@ class QuestionVoter extends Voter
      *
      * @return bool Result
      */
-    protected function supports(string $attribute, $subject): bool
+    protected function supports(string $attribute, mixed $subject): bool
     {
         return in_array($attribute, [self::EDIT, self::VIEW, self::DELETE])
             && $subject instanceof Question;
@@ -79,23 +78,20 @@ class QuestionVoter extends Voter
      *
      * @return bool Vote result
      */
-    protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
+    protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
         $user = $token->getUser();
-        if (!$user instanceof UserInterface) {
+        if (!$user instanceof User) {
             return false;
         }
 
-        switch ($attribute) {
-            case self::EDIT:
-                return $this->canEdit($subject, $user);
-            case self::VIEW:
-                return $this->canView($subject, $user);
-            case self::DELETE:
-                return $this->canDelete($subject, $user);
-        }
+        return match ($attribute) {
+            self::EDIT => $this->canEdit($subject, $user),
+            self::VIEW => $this->canView($subject, $user),
+            self::DELETE => $this->canDelete($subject, $user),
+            default => false,
+        };
 
-        return false;
     }
 
     /**

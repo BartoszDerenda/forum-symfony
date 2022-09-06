@@ -33,17 +33,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public const PAGINATOR_ITEMS_PER_PAGE = 8;
 
     /**
-     * Answer service.
-     */
-    private AnswerServiceInterface $answerService;
-
-    /**
      * Constructor.
      */
-    public function __construct(ManagerRegistry $registry, AnswerServiceInterface $answerService)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
-        $this->answerService = $answerService;
     }
 
     /**
@@ -61,7 +55,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Query all records.
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @return QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
@@ -90,23 +84,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Deletes user with it's associated entities.
-     *
-     * @param User $user
-     * @return void
-     */
-    public function deleteUserWithHeritage(User $user): void
-    {
-        $answers = $this->answerService->findAllByUser($user);
-        if (!$answers->isEmpty()) {
-            foreach ($answers as $answer) {
-                $this->answerService->delete($answer);
-            }
-        }
-        $this->delete($user);
-    }
-
-    /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
     public function upgradePassword(PasswordAuthenticatedUserInterface $user, string $newHashedPassword): void
@@ -117,6 +94,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         $user->setPassword($newHashedPassword);
 
-        $this->save($user, true);
+        $this->save($user);
     }
 }
