@@ -28,7 +28,7 @@ class Question
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private ?int $id = null;
+    private int $id;
 
     /**
      * Created at.
@@ -96,9 +96,9 @@ class Question
     /**
      * Getter for Id.
      *
-     * @return int|null Id
+     * @return int Id
      */
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
@@ -106,9 +106,9 @@ class Question
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable|null Created at
+     * @return DateTimeImmutable Created at
      */
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -116,9 +116,9 @@ class Question
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable|null $createdAt Created at
+     * @param DateTimeImmutable $createdAt Created at
      */
-    public function setCreatedAt(?DateTimeImmutable $createdAt): void
+    public function setCreatedAt(DateTimeImmutable $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
@@ -126,9 +126,9 @@ class Question
     /**
      * Getter for updated at.
      *
-     * @return DateTimeImmutable|null Updated at
+     * @return DateTimeImmutable Updated at
      */
-    public function getUpdatedAt(): ?DateTimeImmutable
+    public function getUpdatedAt(): DateTimeImmutable
     {
         return $this->updatedAt;
     }
@@ -136,9 +136,9 @@ class Question
     /**
      * Setter for updated at.
      *
-     * @param DateTimeImmutable|null $updatedAt Updated at
+     * @param DateTimeImmutable $updatedAt Updated at
      */
-    public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -146,9 +146,9 @@ class Question
     /**
      * Getter for title.
      *
-     * @return string|null Title
+     * @return string Title
      */
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -156,9 +156,9 @@ class Question
     /**
      * Setter for title.
      *
-     * @param string|null $title Title
+     * @param string $title Title
      */
-    public function setTitle(?string $title): void
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -166,9 +166,9 @@ class Question
     /**
      * Getter for comment.
      *
-     * @return string|null Comment
+     * @return string
      */
-    public function getComment(): ?string
+    public function getComment(): string
     {
         return $this->comment;
     }
@@ -176,6 +176,7 @@ class Question
     /**
      * Setter for comment.
      *
+     * @param string $comment
      * @return $this
      */
     public function setComment(string $comment): self
@@ -188,9 +189,9 @@ class Question
     /**
      * Getter for category.
      *
-     * @return Category|null Category
+     * @return Category
      */
-    public function getCategory(): ?Category
+    public function getCategory(): Category
     {
         return $this->category;
     }
@@ -198,9 +199,10 @@ class Question
     /**
      * Setter for category.
      *
+     * @param Category $category
      * @return $this
      */
-    public function setCategory(?Category $category): self
+    public function setCategory(Category $category): self
     {
         $this->category = $category;
 
@@ -210,7 +212,7 @@ class Question
     /**
      * Getter for tags.
      *
-     * @return Collection<int, Tags> Tags collection
+     * @return Collection
      */
     public function getTags(): Collection
     {
@@ -220,7 +222,8 @@ class Question
     /**
      * Add tag.
      *
-     * @param Tags $tag Tag entity
+     * @param Tags $tag
+     * @return void
      */
     public function addTag(Tags $tag): void
     {
@@ -232,18 +235,30 @@ class Question
     /**
      * Remove tag.
      *
-     * @param Tags $tag Tag entity
+     * @param Tags $tag
+     * @return void
      */
     public function removeTag(Tags $tag): void
     {
         $this->tags->removeElement($tag);
     }
 
+    /**
+     * Getter for image.
+     *
+     * @return string|null
+     */
     public function getImage(): ?string
     {
         return $this->image;
     }
 
+    /**
+     * Setter for image.
+     *
+     * @param string|null $image
+     * @return $this
+     */
     public function setImage(?string $image): self
     {
         $this->image = $image;
@@ -253,12 +268,21 @@ class Question
 
     /**
      * Getter for answer.
+     *
+     * @param Answer $answer
+     * @return Collection
      */
     public function getAnswer(Answer $answer): Collection
     {
         return $this->$answer;
     }
 
+    /**
+     * Add answer.
+     *
+     * @param Answer $answer
+     * @return $this
+     */
     public function addAnswer(Answer $answer): self
     {
         if (!$this->$answer->contains($answer)) {
@@ -269,6 +293,12 @@ class Question
         return $this;
     }
 
+    /**
+     * Remove answer.
+     *
+     * @param Answer $answer
+     * @return $this
+     */
     public function removeAnswer(Answer $answer): self
     {
         if ($this->$answer->removeElement($answer)) {
@@ -281,11 +311,22 @@ class Question
         return $this;
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author
+     * @return $this
+     */
     public function setAuthor(?User $author): self
     {
         $this->author = $author;

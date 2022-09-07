@@ -17,7 +17,7 @@ class Tags
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     /**
      * Title.
@@ -51,16 +51,32 @@ class Tags
     #[Gedmo\Slug(fields: ['title'])]
     private string $slug;
 
-    public function getId(): ?int
+    /**
+     * Getter for Id.
+     *
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    /**
+     * Getter for title.
+     *
+     * @return string
+     */
+    public function getTitle(): string
     {
         return $this->title;
     }
 
+    /**
+     * Setter for title.
+     *
+     * @param string $title
+     * @return $this
+     */
     public function setTitle(string $title): self
     {
         $this->title = $title;
@@ -68,11 +84,22 @@ class Tags
         return $this;
     }
 
+    /**
+     * Getter for created at.
+     *
+     * @return DateTimeImmutable
+     */
     public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
 
+    /**
+     * Setter for created at.
+     *
+     * @param DateTimeImmutable $createdAt
+     * @return $this
+     */
     public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -80,11 +107,22 @@ class Tags
         return $this;
     }
 
+    /**
+     * Getter for updated at.
+     *
+     * @return DateTimeImmutable
+     */
     public function getUpdatedAt(): DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
+    /**
+     * Setter for updated at.
+     *
+     * @param DateTimeImmutable $updatedAt
+     * @return $this
+     */
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
@@ -92,11 +130,22 @@ class Tags
         return $this;
     }
 
-    public function getSlug(): ?string
+    /**
+     * Getter for slug.
+     *
+     * @return string
+     */
+    public function getSlug(): string
     {
         return $this->slug;
     }
 
+    /**
+     * Setter for slug.
+     *
+     * @param string $slug
+     * @return $this
+     */
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
@@ -104,6 +153,11 @@ class Tags
         return $this;
     }
 
+    /**
+     * String conversion.
+     *
+     * @return string
+     */
     public function __toString()
     {
         return $this->title;

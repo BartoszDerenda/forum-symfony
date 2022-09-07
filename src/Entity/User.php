@@ -26,7 +26,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private ?int $id = null;
+    private int $id;
 
     /**
      * Email.
@@ -61,9 +61,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for id.
      *
-     * @return int|null Id
+     * @return int Id
      */
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
@@ -97,7 +97,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return $this->email;
     }
 
     /**
@@ -107,7 +107,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return $this->email;
     }
 
     /**
@@ -139,11 +139,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for password.
      *
-     * @return string|null Password
+     * @return string Password
      *
      * @see PasswordAuthenticatedUserInterface
      */
-    public function getPassword(): ?string
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -180,11 +180,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * Getter for nickname.
+     *
+     * @return string|null
+     */
     public function getNickname(): ?string
     {
         return $this->nickname;
     }
 
+    /**
+     * Setter for nickname.
+     *
+     * @param string $nickname
+     * @return $this
+     */
     public function setNickname(string $nickname): self
     {
         $this->nickname = $nickname;
