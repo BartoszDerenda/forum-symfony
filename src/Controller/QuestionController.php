@@ -8,9 +8,9 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Question;
 use App\Entity\User;
+use App\Form\Type\QuestionType;
 use App\Service\AnswerServiceInterface;
 use App\Service\QuestionServiceInterface;
-use App\Form\Type\QuestionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -32,15 +32,11 @@ class QuestionController extends AbstractController
 
     /**
      * Answer service.
-     *
-     * @var AnswerServiceInterface
      */
     private AnswerServiceInterface $answerService;
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -140,10 +136,11 @@ class QuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $request->files->get('question')['image'];
             if ($file) {
-                $filename = md5(uniqid()) . '.' . $file->guessClientExtension();
+                $filename = md5(uniqid()).'.'.$file->guessClientExtension();
 
                 $file->move(
-                    $this->getParameter('uploads_dir'), $filename
+                    $this->getParameter('uploads_dir'),
+                    $filename
                 );
                 $question->setImage($filename);
             }
@@ -188,10 +185,11 @@ class QuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $request->files->get('question')['image'];
             if ($file) {
-                $filename = md5(uniqid()) . '.' . $file->guessClientExtension();
+                $filename = md5(uniqid()).'.'.$file->guessClientExtension();
 
                 $file->move(
-                    $this->getParameter('uploads_dir'), $filename
+                    $this->getParameter('uploads_dir'),
+                    $filename
                 );
                 $question->setImage($filename);
             }

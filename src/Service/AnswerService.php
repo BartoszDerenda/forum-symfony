@@ -7,7 +7,6 @@ namespace App\Service;
 
 use App\Entity\Answer;
 use App\Entity\Question;
-use App\Entity\User;
 use App\Repository\AnswerRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -30,8 +29,8 @@ class AnswerService implements AnswerServiceInterface
     /**
      * Constructor.
      *
-     * @param AnswerRepository     $answerRepository Answer repository
-     * @param PaginatorInterface     $paginator      Paginator
+     * @param AnswerRepository   $answerRepository Answer repository
+     * @param PaginatorInterface $paginator        Paginator
      */
     public function __construct(AnswerRepository $answerRepository, PaginatorInterface $paginator)
     {

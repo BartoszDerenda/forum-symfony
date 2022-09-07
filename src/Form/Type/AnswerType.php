@@ -37,14 +37,15 @@ class AnswerType extends AbstractType
                 'label' => 'label.comment',
                 'required' => true,
                 'attr' => ['max_length' => 5000, 'rows' => '10'],
-            ]);
+            ]
+        );
         $builder->add(
             'image',
             FileType::class,
-            array(
-                'data_class' => null,'required' => false
-            ));
-
+            [
+                'data_class' => null, 'required' => false,
+            ]
+        );
     }
 
     /**

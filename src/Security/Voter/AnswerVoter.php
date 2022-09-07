@@ -46,8 +46,6 @@ class AnswerVoter extends Voter
 
     /**
      * Security helper.
-     *
-     * @var Security
      */
     private Security $security;
 
@@ -99,14 +97,13 @@ class AnswerVoter extends Voter
             self::AWARD => $this->canAward($subject, $user),
             default => false,
         };
-
     }
 
     /**
      * Checks if user can edit answer.
      *
      * @param Answer $answer Answer entity
-     * @param User $user User
+     * @param User   $user   User
      *
      * @return bool Result
      */
@@ -119,7 +116,7 @@ class AnswerVoter extends Voter
      * Checks if user can view answer.
      *
      * @param Answer $answer Answer entity
-     * @param User $user User
+     * @param User   $user   User
      *
      * @return bool Result
      */
@@ -132,17 +129,15 @@ class AnswerVoter extends Voter
      * Checks if user can delete answer.
      *
      * @param Answer $answer Answer entity
-     * @param User $user User
+     * @param User   $user   User
      *
      * @return bool Result
      */
     private function canDelete(Answer $answer, User $user): bool
     {
-        if ($this->security->isGranted('ROLE_ADMIN') or $answer->getAuthor() === $user)
-        {
+        if ($this->security->isGranted('ROLE_ADMIN') or $answer->getAuthor() === $user) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -151,17 +146,15 @@ class AnswerVoter extends Voter
      * Checks if user can award an answer.
      *
      * @param Answer $answer Answer entity
-     * @param User $user User
+     * @param User   $user   User
      *
      * @return bool Result
      */
     private function canAward(Answer $answer, User $user): bool
     {
-        if ($this->security->isGranted('ROLE_ADMIN') or $answer->getQuestion()->getAuthor() === $user)
-        {
+        if ($this->security->isGranted('ROLE_ADMIN') or $answer->getQuestion()->getAuthor() === $user) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

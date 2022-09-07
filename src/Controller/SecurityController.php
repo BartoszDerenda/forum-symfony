@@ -23,15 +23,11 @@ class SecurityController extends AbstractController
 
     /**
      * Password hasher.
-     *
-     * @var UserPasswordHasherInterface
      */
     private UserPasswordHasherInterface $passwordHasher;
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -48,9 +44,9 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-         if ($this->getUser()) {
-             return $this->redirectToRoute('question_index');
-         }
+        if ($this->getUser()) {
+            return $this->redirectToRoute('question_index');
+        }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -74,21 +70,22 @@ class SecurityController extends AbstractController
             [
                 'method' => 'PUT',
                 'action' => $this->generateUrl('app_register'),
-            ]);
+            ]
+        );
 
         $form->handleRequest($request);
-        if ($form->isSubmitted())
-        {
+        if ($form->isSubmitted()) {
             $data = $form->getData();
             $user = new User();
             $user->setEmail($data['email']);
             $user->setNickname($data['nickname']);
-            $user->setRoles(array('ROLE_USER'));
+            $user->setRoles(['ROLE_USER']);
             $user->setPassword(
                 $passwordHasher->hashPassword(
                     $user,
                     $data['password']
-                ));
+                )
+            );
 
             $this->userService->save($user);
 
@@ -102,18 +99,12 @@ class SecurityController extends AbstractController
 
         return $this->render('security/registration.html.twig', [
             'controller_name' => 'RegistrationController',
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
-
     }
 
     /**
      * Edit action.
-     *
-     * @param Request $request
-     * @param User $user
-     * @param UserPasswordHasherInterface $passwordHasher
-     * @return Response
      */
     #[Route('/{id}/account_edit', name: 'app_account_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, User $user, UserPasswordHasherInterface $passwordHasher): Response
@@ -124,7 +115,8 @@ class SecurityController extends AbstractController
             [
                 'method' => 'PUT',
                 'action' => $this->generateUrl('app_account_edit', ['id' => $user->getId()]),
-            ]);
+            ]
+        );
 
         $form->handleRequest($request);
 

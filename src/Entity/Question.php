@@ -7,11 +7,11 @@ namespace App\Entity;
 
 use App\Repository\QuestionRepository;
 use DateTimeImmutable;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Question.
@@ -24,8 +24,6 @@ class Question
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -34,8 +32,6 @@ class Question
 
     /**
      * Created at.
-     *
-     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
@@ -43,8 +39,6 @@ class Question
 
     /**
      * Updated at.
-     *
-     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
@@ -52,25 +46,18 @@ class Question
 
     /**
      * Title.
-     *
-     * @var string
      */
     #[ORM\Column(type: 'string', length: 255)]
     private string $title;
 
     /**
-     * Comment
-     *
-     * @var string
+     * Comment.
      */
     #[ORM\Column(length: 5000)]
     private string $comment;
 
-
     /**
      * Category.
-     *
-     * @var Category
      */
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -78,7 +65,6 @@ class Question
 
     /**
      * Tags.
-     *
      */
     #[Assert\Valid]
     #[ORM\ManyToMany(targetEntity: Tags::class, fetch: 'EXTRA_LAZY', orphanRemoval: true)]
@@ -87,25 +73,20 @@ class Question
 
     /**
      * Image.
-     *
-     * @var string|null
      */
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $image = null;
 
     /**
      * Author.
-     *
-     * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
-    #[ORM\JoinColumn(nullable: true, onDelete: "CASCADE")]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
     #[Assert\Type(User::class)]
     private ?User $author;
 
     /**
      * Constructor.
-     *
      */
     public function __construct()
     {
@@ -195,7 +176,6 @@ class Question
     /**
      * Setter for comment.
      *
-     * @param string $comment
      * @return $this
      */
     public function setComment(string $comment): self
@@ -218,7 +198,6 @@ class Question
     /**
      * Setter for category.
      *
-     * @param Category|null $category
      * @return $this
      */
     public function setCategory(?Category $category): self
@@ -274,9 +253,6 @@ class Question
 
     /**
      * Getter for answer.
-     *
-     * @param Answer $answer
-     * @return Collection
      */
     public function getAnswer(Answer $answer): Collection
     {
@@ -316,5 +292,4 @@ class Question
 
         return $this;
     }
-
 }

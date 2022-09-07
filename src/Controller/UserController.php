@@ -31,15 +31,11 @@ class UserController extends AbstractController
 
     /**
      * Password hasher.
-     *
-     * @var UserPasswordHasherInterface
      */
     private UserPasswordHasherInterface $passwordHasher;
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -73,8 +69,8 @@ class UserController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param User $user User entity
+     * @param Request $request HTTP request
+     * @param User    $user    User entity
      *
      * @return Response HTTP response
      */
@@ -120,8 +116,8 @@ class UserController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
-     * @param User $user User entity
+     * @param Request $request HTTP request
+     * @param User    $user    User entity
      *
      * @return Response HTTP response
      */

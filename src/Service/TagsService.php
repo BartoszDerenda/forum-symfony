@@ -80,6 +80,7 @@ class TagsService implements TagsServiceInterface
      * @param string $title Tag title
      *
      * @return Tags|null Tag entity
+     *
      * @throws NonUniqueResultException
      */
     public function findOneByTitle(string $title): ?Tags

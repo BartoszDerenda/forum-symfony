@@ -67,10 +67,6 @@ class TagsRepository extends ServiceEntityRepository
 
     /**
      * Create entity.
-     *
-     * @param Tags $entity
-     * @param bool $flush
-     * @return void
      */
     public function add(Tags $entity, bool $flush = false): void
     {
@@ -94,9 +90,6 @@ class TagsRepository extends ServiceEntityRepository
 
     /**
      * Delete entity.
-     *
-     * @param Tags $tags
-     * @return void
      */
     public function delete(Tags $tags): void
     {
@@ -107,8 +100,6 @@ class TagsRepository extends ServiceEntityRepository
     /**
      * Find one by title.
      *
-     * @param string $value
-     * @return Tags|null
      * @throws NonUniqueResultException
      */
     public function findOneByTitle(string $value): ?Tags

@@ -6,8 +6,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\Tags;
 use App\Entity\Question;
+use App\Entity\Tags;
 use App\Entity\User;
 use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -57,7 +57,6 @@ class QuestionFixtures extends AbstractBaseFixtures implements DependentFixtureI
             foreach ($tags as $tag) {
                 $question->addTag($tag);
             }
-
 
             /** @var User $author */
             $author = $this->getRandomReference('users');

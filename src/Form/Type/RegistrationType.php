@@ -10,7 +10,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -40,7 +39,8 @@ class RegistrationType extends AbstractType
                 'label' => 'label.email',
                 'required' => true,
                 'attr' => ['max_length' => 180],
-            ]);
+            ]
+        );
         $builder->add(
             'nickname',
             TextType::class,
@@ -48,14 +48,18 @@ class RegistrationType extends AbstractType
                 'label' => 'label.username',
                 'required' => true,
                 'attr' => ['max_length' => 64],
-            ]);
-        $builder->add('password', RepeatedType::class,
+            ]
+        );
+        $builder->add(
+            'password',
+            RepeatedType::class,
             [
             'type' => PasswordType::class,
             'required' => true,
             'first_options' => ['label' => 'Hasło'],
-            'second_options' => ['label' => 'Potwierdź hasło']
-        ]);
+            'second_options' => ['label' => 'Potwierdź hasło'],
+        ]
+        );
     }
 
     /**

@@ -22,8 +22,6 @@ class Category
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -32,8 +30,6 @@ class Category
 
     /**
      * Created at.
-     *
-     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(DateTimeImmutable::class)]
@@ -42,8 +38,6 @@ class Category
 
     /**
      * Updated at.
-     *
-     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Assert\Type(DateTimeImmutable::class)]
@@ -52,8 +46,6 @@ class Category
 
     /**
      * Title.
-     *
-     * @var string
      */
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Type('string')]
@@ -63,8 +55,6 @@ class Category
 
     /**
      * Slug.
-     *
-     * @var string
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Assert\Type('string')]
@@ -153,5 +143,4 @@ class Category
 
         return $this;
     }
-
 }

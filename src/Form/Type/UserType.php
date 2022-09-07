@@ -39,7 +39,8 @@ class UserType extends AbstractType
                 'label' => 'label.email',
                 'required' => true,
                 'attr' => ['max_length' => 180],
-            ]);
+            ]
+        );
         $builder->add(
             'nickname',
             TextType::class,
@@ -47,13 +48,17 @@ class UserType extends AbstractType
                 'label' => 'label.username',
                 'required' => true,
                 'attr' => ['max_length' => 64],
-            ]);
-        $builder->add('password', RepeatedType::class,
+            ]
+        );
+        $builder->add(
+            'password',
+            RepeatedType::class,
             [
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'Nowe hasło'],
-                'second_options' => ['label' => 'Potwierdź nowe hasło']
-            ]);
+                'second_options' => ['label' => 'Potwierdź nowe hasło'],
+            ]
+        );
     }
 
     /**

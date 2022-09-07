@@ -6,8 +6,8 @@
 namespace App\Controller;
 
 use App\Entity\Tags;
-use App\Service\TagsServiceInterface;
 use App\Form\Type\TagsType;
+use App\Service\TagsServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,8 +28,6 @@ class TagsController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -115,8 +113,8 @@ class TagsController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param Tags $tags Tags entity
+     * @param Request $request HTTP request
+     * @param Tags    $tags    Tags entity
      *
      * @return Response HTTP response
      */
@@ -156,8 +154,8 @@ class TagsController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
-     * @param Tags $tags Tags entity
+     * @param Request $request HTTP request
+     * @param Tags    $tags    Tags entity
      *
      * @return Response HTTP response
      */

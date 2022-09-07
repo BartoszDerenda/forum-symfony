@@ -23,8 +23,6 @@ class QuestionType extends AbstractType
 {
     /**
      * Tags data transformer.
-     *
-     * @var TagsDataTransformer
      */
     private TagsDataTransformer $tagsDataTransformer;
 
@@ -58,7 +56,8 @@ class QuestionType extends AbstractType
                 'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 64],
-            ]);
+            ]
+        );
         $builder->add(
             'category',
             EntityType::class,
@@ -70,7 +69,8 @@ class QuestionType extends AbstractType
                 'label' => 'label.category',
                 'placeholder' => 'label.none',
                 'required' => true,
-            ]);
+            ]
+        );
         $builder->add(
             'comment',
             TextareaType::class,
@@ -78,7 +78,8 @@ class QuestionType extends AbstractType
                 'label' => 'label.comment',
                 'required' => true,
                 'attr' => ['max_length' => 5000, 'rows' => '10'],
-            ]);
+            ]
+        );
         $builder->add(
             'tags',
             TextType::class,
@@ -95,9 +96,10 @@ class QuestionType extends AbstractType
 
         $builder->add(
             'image',
-            FileType::class, array(
-                'data_class' => null,'required' => false
-            )
+            FileType::class,
+            [
+                'data_class' => null, 'required' => false,
+            ]
         );
     }
 

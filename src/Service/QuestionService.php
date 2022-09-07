@@ -29,8 +29,8 @@ class QuestionService implements QuestionServiceInterface
     /**
      * Constructor.
      *
-     * @param QuestionRepository     $questionRepository Question repository
-     * @param PaginatorInterface     $paginator      Paginator
+     * @param QuestionRepository $questionRepository Question repository
+     * @param PaginatorInterface $paginator          Paginator
      */
     public function __construct(QuestionRepository $questionRepository, PaginatorInterface $paginator)
     {
@@ -56,9 +56,6 @@ class QuestionService implements QuestionServiceInterface
 
     /**
      * Get paginated list by category.
-     *
-     * @param int $page
-     * @param Category $category
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */

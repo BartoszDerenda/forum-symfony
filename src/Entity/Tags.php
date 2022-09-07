@@ -13,8 +13,6 @@ class Tags
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,8 +21,6 @@ class Tags
 
     /**
      * Title.
-     *
-     * @var string
      */
     #[ORM\Column(type: 'string', length: 32)]
     #[Assert\Type('string')]
@@ -34,8 +30,6 @@ class Tags
 
     /**
      * Created at.
-     *
-     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
@@ -43,8 +37,6 @@ class Tags
 
     /**
      * Updated at.
-     *
-     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
@@ -52,8 +44,6 @@ class Tags
 
     /**
      * Slug.
-     *
-     * @var string
      */
     #[ORM\Column(type: 'string', length: 32)]
     #[Assert\Type('string')]

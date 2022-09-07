@@ -11,11 +11,11 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
-
 /**
  * Class AnswerRepository.
  *
  * @extends ServiceEntityRepository<Answer>
+ *
  * @psalm-suppress LessSpecificImplementedReturnType
  *
  * @method Answer|null find($id, $lockMode = null, $lockVersion = null)
@@ -98,7 +98,6 @@ class AnswerRepository extends ServiceEntityRepository
 
     /**
      * Award entity.
-     *
      */
     public function award(Answer $answer): void
     {
@@ -114,7 +113,6 @@ class AnswerRepository extends ServiceEntityRepository
 
     /**
      * Deaward entity.
-     *
      */
     public function deaward(Answer $answer): void
     {

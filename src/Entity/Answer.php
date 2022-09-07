@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnswerRepository;
-use Doctrine\ORM\Mapping as ORM;
 use DateTimeImmutable;
+use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -19,8 +19,6 @@ class Answer
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,24 +27,18 @@ class Answer
 
     /**
      * Comment.
-     *
-     * @var string
      */
     #[ORM\Column(length: 5000)]
     private string $comment;
 
     /**
      * Image.
-     *
-     * @var string|null
      */
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $image = null;
 
     /**
      * Created at.
-     *
-     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
@@ -54,8 +46,6 @@ class Answer
 
     /**
      * Updated at.
-     *
-     * @var DateTimeImmutable
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
@@ -63,31 +53,24 @@ class Answer
 
     /**
      * Question.
-     *
-     * @var Question
      */
     #[ORM\ManyToOne(targetEntity: Question::class)]
-    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private Question $question;
 
     /**
      * Author.
-     *
-     * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(nullable: true, onDelete: "CASCADE")]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
     #[Assert\Type(User::class)]
     private ?User $author = null;
 
     /**
      * Best answer.
-     *
-     * @var bool
      */
     #[ORM\Column(type: 'boolean', options: ['default: 0'])]
     private bool $best_answer = false;
-
 
     public function getId(): ?int
     {
@@ -118,24 +101,24 @@ class Answer
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

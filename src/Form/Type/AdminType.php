@@ -40,7 +40,8 @@ class AdminType extends AbstractType
                 'label' => 'label.email',
                 'required' => false,
                 'attr' => ['max_length' => 180],
-            ]);
+            ]
+        );
         $builder->add(
             'nickname',
             TextType::class,
@@ -48,31 +49,34 @@ class AdminType extends AbstractType
                 'label' => 'label.username',
                 'required' => false,
                 'attr' => ['max_length' => 64],
-            ]);
-        $builder->add('password', RepeatedType::class,
+            ]
+        );
+        $builder->add(
+            'password',
+            RepeatedType::class,
             [
                 'type' => PasswordType::class,
                 'required' => false,
                 'first_options' => ['label' => 'Nowe hasło'],
-                'second_options' => ['label' => 'Potwierdź nowe hasło']
-            ]);
-        $builder->add('roles', ChoiceType::class, array(
-                'attr'  =>  array('class' => 'form-control'),
-                'choices' =>
-                    array
-                    (
-                        'ROLE_ADMIN' => array
-                        (
+                'second_options' => ['label' => 'Potwierdź nowe hasło'],
+            ]
+        );
+        $builder->add(
+            'roles',
+            ChoiceType::class,
+            [
+                'attr' => ['class' => 'form-control'],
+                'choices' => [
+                        'ROLE_ADMIN' => [
                             'Yes' => 'ROLE_ADMIN',
-                        ),
-                        'ROLE_USER' => array
-                        (
-                            'Yes' => 'ROLE_USER'
-                        ),
-                    ),
+                        ],
+                        'ROLE_USER' => [
+                            'Yes' => 'ROLE_USER',
+                        ],
+                    ],
                 'multiple' => true,
                 'required' => true,
-            )
+            ]
         );
     }
 

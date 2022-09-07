@@ -31,8 +31,6 @@ class AnswerController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -75,10 +73,11 @@ class AnswerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $request->files->get('answer')['image'];
             if ($file) {
-                $filename = md5(uniqid()) . '.' . $file->guessClientExtension();
+                $filename = md5(uniqid()).'.'.$file->guessClientExtension();
 
                 $file->move(
-                    $this->getParameter('uploads_dir'), $filename
+                    $this->getParameter('uploads_dir'),
+                    $filename
                 );
                 $answer->setImage($filename);
             }
@@ -101,8 +100,8 @@ class AnswerController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param Answer $answer Answer entity
+     * @param Request $request HTTP request
+     * @param Answer  $answer  Answer entity
      *
      * @return Response HTTP response
      */
@@ -123,10 +122,11 @@ class AnswerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $request->files->get('answer')['image'];
             if ($file) {
-                $filename = md5(uniqid()) . '.' . $file->guessClientExtension();
+                $filename = md5(uniqid()).'.'.$file->guessClientExtension();
 
                 $file->move(
-                    $this->getParameter('uploads_dir'), $filename
+                    $this->getParameter('uploads_dir'),
+                    $filename
                 );
                 $answer->setImage($filename);
             }
@@ -152,8 +152,8 @@ class AnswerController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request  $request  HTTP request
-     * @param Answer $answer Answer entity
+     * @param Request $request HTTP request
+     * @param Answer  $answer  Answer entity
      *
      * @return Response HTTP response
      */
@@ -194,8 +194,8 @@ class AnswerController extends AbstractController
     /**
      * Mark action.
      *
-     * @param Request  $request  HTTP request
-     * @param Answer $answer Answer entity
+     * @param Request $request HTTP request
+     * @param Answer  $answer  Answer entity
      *
      * @return Response HTTP response
      */
@@ -236,8 +236,8 @@ class AnswerController extends AbstractController
     /**
      * Unmark action.
      *
-     * @param Request  $request  HTTP request
-     * @param Answer $answer Answer entity
+     * @param Request $request HTTP request
+     * @param Answer  $answer  Answer entity
      *
      * @return Response HTTP response
      */

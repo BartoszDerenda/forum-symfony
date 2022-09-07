@@ -39,8 +39,6 @@ class QuestionVoter extends Voter
 
     /**
      * Security helper.
-     *
-     * @var Security
      */
     private Security $security;
 
@@ -91,14 +89,13 @@ class QuestionVoter extends Voter
             self::DELETE => $this->canDelete($subject, $user),
             default => false,
         };
-
     }
 
     /**
      * Checks if user can edit question.
      *
      * @param Question $question Question entity
-     * @param User $user User
+     * @param User     $user     User
      *
      * @return bool Result
      */
@@ -111,7 +108,7 @@ class QuestionVoter extends Voter
      * Checks if user can view question.
      *
      * @param Question $question Question entity
-     * @param User $user User
+     * @param User     $user     User
      *
      * @return bool Result
      */
@@ -124,17 +121,15 @@ class QuestionVoter extends Voter
      * Checks if user can delete question.
      *
      * @param Question $question Question entity
-     * @param User $user User
+     * @param User     $user     User
      *
      * @return bool Result
      */
     private function canDelete(Question $question, User $user): bool
     {
-        if ($this->security->isGranted('ROLE_ADMIN') or $question->getAuthor() === $user)
-        {
+        if ($this->security->isGranted('ROLE_ADMIN') or $question->getAuthor() === $user) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

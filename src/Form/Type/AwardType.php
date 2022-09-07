@@ -32,7 +32,8 @@ class AwardType extends AbstractType
         $builder->add(
             'bestAnswer',
             EnumType::class,
-            array('data_class' => null));
+            ['data_class' => null]
+        );
     }
 
     /**
