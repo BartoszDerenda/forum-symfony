@@ -238,6 +238,42 @@
                 <source>action.unmark_best_answer</source>
                 <target>Usuń odznakę najlepszej odpowiedzi</target>
             </trans-unit>
+            <trans-unit id="title.user_edit">
+                <source>title.user_edit</source>
+                <target>Edycja użytkownika: %nickname%</target>
+            </trans-unit>
+            <trans-unit id="navbar.dropdown_user">
+                <source>navbar.dropdown_user</source>
+                <target>Użytkownicy</target>
+            </trans-unit>
+            <trans-unit id="action.account_edit">
+                <source>action.account_edit</source>
+                <target>Edycja konta</target>
+            </trans-unit>
+            <trans-unit id="title.user_delete">
+                <source>title.user_delete</source>
+                <target>Usunięcie użytkownika</target>
+            </trans-unit>
+            <trans-unit id="title.user_list">
+                <source>title.user_list</source>
+                <target>Lista użytkowników</target>
+            </trans-unit>
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>Nazwa użytkownika</target>
+            </trans-unit>
+            <trans-unit id="label.nickname">
+                <source>label.nickname</source>
+                <target>Nazwa użytkownika</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="label.roles">
+                <source>label.roles</source>
+                <target>Role</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

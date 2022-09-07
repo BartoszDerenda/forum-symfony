@@ -234,6 +234,42 @@
                 <source>action.unmark_best_answer</source>
                 <target>Remove the award</target>
             </trans-unit>
+            <trans-unit id="title.user_edit">
+                <source>title.user_edit</source>
+                <target>Editing user: %nickname%</target>
+            </trans-unit>
+            <trans-unit id="navbar.dropdown_user">
+                <source>navbar.dropdown_user</source>
+                <target>Users</target>
+            </trans-unit>
+            <trans-unit id="action.account_edit">
+                <source>action.account_edit</source>
+                <target>Account edit</target>
+            </trans-unit>
+            <trans-unit id="title.user_delete">
+                <source>title.user_delete</source>
+                <target>User delete</target>
+            </trans-unit>
+            <trans-unit id="title.user_list">
+                <source>title.user_list</source>
+                <target>Users list</target>
+            </trans-unit>
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>Username</target>
+            </trans-unit>
+            <trans-unit id="label.nickname">
+                <source>label.nickname</source>
+                <target>Username</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="label.roles">
+                <source>label.roles</source>
+                <target>Roles</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

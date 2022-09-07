@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\Type\RegistrationType;
 use App\Form\Type\UserType;
 use App\Service\UserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -63,6 +64,47 @@ class SecurityController extends AbstractController
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    #[Route('/register', name: 'app_register')]
+    public function register(Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        $form = $this->createForm(
+            RegistrationType::class,
+            [
+                'method' => 'PUT',
+                'action' => $this->generateUrl('app_register'),
+            ]);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted())
+        {
+            $data = $form->getData();
+            $user = new User();
+            $user->setEmail($data['email']);
+            $user->setNickname($data['nickname']);
+            $user->setRoles(array('ROLE_USER'));
+            $user->setPassword(
+                $passwordHasher->hashPassword(
+                    $user,
+                    $data['password']
+                ));
+
+            $this->userService->save($user);
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('message.success')
+            );
+
+            return $this->redirect($this->generateUrl('app_login'));
+        }
+
+        return $this->render('security/registration.html.twig', [
+            'controller_name' => 'RegistrationController',
+            'form' => $form->createView()
+        ]);
+
     }
 
     /**

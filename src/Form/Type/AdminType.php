@@ -1,24 +1,24 @@
 <?php
 /**
- * Registration type.
+ * Admin type.
  */
 
 namespace App\Form\Type;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class RegistrationType.
+ * Class UserType.
  */
-class RegistrationType extends AbstractType
+class AdminType extends AbstractType
 {
     /**
      * Builds the form.
@@ -38,7 +38,7 @@ class RegistrationType extends AbstractType
             EmailType::class,
             [
                 'label' => 'label.email',
-                'required' => true,
+                'required' => false,
                 'attr' => ['max_length' => 180],
             ]);
         $builder->add(
@@ -46,16 +46,34 @@ class RegistrationType extends AbstractType
             TextType::class,
             [
                 'label' => 'label.username',
-                'required' => true,
+                'required' => false,
                 'attr' => ['max_length' => 64],
             ]);
         $builder->add('password', RepeatedType::class,
             [
-            'type' => PasswordType::class,
-            'required' => true,
-            'first_options' => ['label' => 'Hasło'],
-            'second_options' => ['label' => 'Potwierdź hasło']
-        ]);
+                'type' => PasswordType::class,
+                'required' => false,
+                'first_options' => ['label' => 'Nowe hasło'],
+                'second_options' => ['label' => 'Potwierdź nowe hasło']
+            ]);
+        $builder->add('roles', ChoiceType::class, array(
+                'attr'  =>  array('class' => 'form-control'),
+                'choices' =>
+                    array
+                    (
+                        'ROLE_ADMIN' => array
+                        (
+                            'Yes' => 'ROLE_ADMIN',
+                        ),
+                        'ROLE_USER' => array
+                        (
+                            'Yes' => 'ROLE_USER'
+                        ),
+                    ),
+                'multiple' => true,
+                'required' => true,
+            )
+        );
     }
 
     /**
@@ -65,7 +83,7 @@ class RegistrationType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => null]);
+        $resolver->setDefaults(['data_class' => User::class]);
     }
 
     /**
@@ -78,6 +96,6 @@ class RegistrationType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'registration';
+        return 'user';
     }
 }

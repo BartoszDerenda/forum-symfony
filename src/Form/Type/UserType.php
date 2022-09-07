@@ -38,6 +38,7 @@ class UserType extends AbstractType
             [
                 'label' => 'label.email',
                 'required' => true,
+                'attr' => ['max_length' => 180],
             ]);
         $builder->add(
             'nickname',

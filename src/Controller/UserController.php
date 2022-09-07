@@ -6,8 +6,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\Type\AdminType;
 use App\Service\UserServiceInterface;
-use App\Form\Type\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -21,6 +21,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  * Class UserController.
  */
 #[Route('/user')]
+#[IsGranted('ROLE_ADMIN')]
 class UserController extends AbstractController
 {
     /**
@@ -82,7 +83,7 @@ class UserController extends AbstractController
     public function edit(Request $request, User $user): Response
     {
         $form = $this->createForm(
-            UserType::class,
+            AdminType::class,
             $user,
             [
                 'method' => 'PUT',
