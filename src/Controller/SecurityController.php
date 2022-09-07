@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\Type\RegistrationType;
 use App\Form\Type\UserType;
 use App\Service\UserServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -107,6 +108,7 @@ class SecurityController extends AbstractController
      * Edit action.
      */
     #[Route('/{id}/account_edit', name: 'app_account_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function edit(Request $request, User $user, UserPasswordHasherInterface $passwordHasher): Response
     {
         $form = $this->createForm(
