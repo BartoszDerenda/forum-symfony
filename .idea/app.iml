@@ -149,6 +149,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan-symfony" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpstan-doctrine" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/friendsofphp/php-cs-fixer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psalm/plugin-symfony" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/weirdan/doctrine-psalm-plugin" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psalm/plugin-phpunit" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
