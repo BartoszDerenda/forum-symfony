@@ -26,9 +26,10 @@ interface QuestionServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page Page number
+     * @param int      $page
+     * @param Category $category
      *
-     * @return PaginationInterface<string, mixed> Paginated list
+     * @return PaginationInterface
      */
     public function queryByCategory(int $page, Category $category): PaginationInterface;
 

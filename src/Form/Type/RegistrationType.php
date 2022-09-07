@@ -58,7 +58,7 @@ class RegistrationType extends AbstractType
             'required' => true,
             'first_options' => ['label' => 'Hasło'],
             'second_options' => ['label' => 'Potwierdź hasło'],
-        ]
+            ]
         );
     }
 

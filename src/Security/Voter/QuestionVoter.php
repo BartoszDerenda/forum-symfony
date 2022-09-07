@@ -129,8 +129,8 @@ class QuestionVoter extends Voter
     {
         if ($this->security->isGranted('ROLE_ADMIN') or $question->getAuthor() === $user) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 }

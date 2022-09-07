@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Security controller.
+ */
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -15,6 +19,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * SecurityController class.
+ */
 class SecurityController extends AbstractController
 {
     /**
@@ -34,6 +41,10 @@ class SecurityController extends AbstractController
 
     /**
      * Constructor.
+     *
+     * @param UserServiceInterface        $userService
+     * @param TranslatorInterface         $translator
+     * @param UserPasswordHasherInterface $passwordHasher
      */
     public function __construct(UserServiceInterface $userService, TranslatorInterface $translator, UserPasswordHasherInterface $passwordHasher)
     {
@@ -42,6 +53,13 @@ class SecurityController extends AbstractController
         $this->passwordHasher = $passwordHasher;
     }
 
+    /**
+     * Login.
+     *
+     * @param AuthenticationUtils $authenticationUtils
+     *
+     * @return Response
+     */
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -57,12 +75,25 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
+    /**
+     * Logout.
+     *
+     * @return void
+     */
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
+    /**
+     * Register.
+     *
+     * @param Request                     $request
+     * @param UserPasswordHasherInterface $passwordHasher
+     *
+     * @return Response
+     */
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
@@ -106,6 +137,12 @@ class SecurityController extends AbstractController
 
     /**
      * Edit action.
+     *
+     * @param Request                     $request
+     * @param User                        $user
+     * @param UserPasswordHasherInterface $passwordHasher
+     *
+     * @return Response
      */
     #[Route('/{id}/account_edit', name: 'app_account_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]

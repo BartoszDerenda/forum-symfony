@@ -14,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User.
+ *
+ * @psalm-suppress MissingConstructor
  */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'users')]
@@ -162,7 +164,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
-     * @see UserInterface
+     * @return string|null
      */
     public function getSalt(): ?string
     {
@@ -194,6 +196,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Setter for nickname.
      *
      * @param string $nickname
+     *
      * @return $this
      */
     public function setNickname(string $nickname): self

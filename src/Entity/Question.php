@@ -177,6 +177,7 @@ class Question
      * Setter for comment.
      *
      * @param string $comment
+     *
      * @return $this
      */
     public function setComment(string $comment): self
@@ -200,6 +201,7 @@ class Question
      * Setter for category.
      *
      * @param Category $category
+     *
      * @return $this
      */
     public function setCategory(Category $category): self
@@ -223,6 +225,7 @@ class Question
      * Add tag.
      *
      * @param Tags $tag
+     *
      * @return void
      */
     public function addTag(Tags $tag): void
@@ -236,6 +239,7 @@ class Question
      * Remove tag.
      *
      * @param Tags $tag
+     *
      * @return void
      */
     public function removeTag(Tags $tag): void
@@ -257,6 +261,7 @@ class Question
      * Setter for image.
      *
      * @param string|null $image
+     *
      * @return $this
      */
     public function setImage(?string $image): self
@@ -270,6 +275,7 @@ class Question
      * Getter for answer.
      *
      * @param Answer $answer
+     *
      * @return Collection
      */
     public function getAnswer(Answer $answer): Collection
@@ -281,6 +287,7 @@ class Question
      * Add answer.
      *
      * @param Answer $answer
+     *
      * @return $this
      */
     public function addAnswer(Answer $answer): self
@@ -297,6 +304,7 @@ class Question
      * Remove answer.
      *
      * @param Answer $answer
+     *
      * @return $this
      */
     public function removeAnswer(Answer $answer): self
@@ -325,6 +333,7 @@ class Question
      * Setter for author.
      *
      * @param User|null $author
+     *
      * @return $this
      */
     public function setAuthor(?User $author): self

@@ -14,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Category.
+ *
+ * @psalm-suppress MissingConstructor
  */
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ORM\Table(name: 'categories')]
@@ -146,6 +148,7 @@ class Category
      * Setter for slug.
      *
      * @param string $slug
+     *
      * @return $this
      */
     public function setSlug(string $slug): self

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Tags repository.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Tags;
@@ -54,19 +58,12 @@ class TagsRepository extends ServiceEntityRepository
     }
 
     /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('tags');
-    }
-
-    /**
      * Create entity.
+     *
+     * @param Tags $entity
+     * @param bool $flush
+     *
+     * @return void
      */
     public function add(Tags $entity, bool $flush = false): void
     {
@@ -80,7 +77,9 @@ class TagsRepository extends ServiceEntityRepository
     /**
      * Save entity.
      *
-     * @param Tags $tags Tags entity
+     * @param Tags $tags
+     *
+     * @return void
      */
     public function save(Tags $tags): void
     {
@@ -90,6 +89,10 @@ class TagsRepository extends ServiceEntityRepository
 
     /**
      * Delete entity.
+     *
+     * @param Tags $tags
+     *
+     * @return void
      */
     public function delete(Tags $tags): void
     {
@@ -99,6 +102,10 @@ class TagsRepository extends ServiceEntityRepository
 
     /**
      * Find one by title.
+     *
+     * @param string $value
+     *
+     * @return Tags|null
      *
      * @throws NonUniqueResultException
      */
@@ -111,28 +118,15 @@ class TagsRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
-//    /**
-//     * @return Tags[] Returns an array of Tags objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('t.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Tags
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('tags');
+    }
 }

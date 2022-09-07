@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Question repository.
  */
@@ -51,7 +52,7 @@ class QuestionRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @return QueryBuilder Query builder
+     * @return QueryBuilder
      */
     public function queryAll(): QueryBuilder
     {
@@ -67,9 +68,11 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
     /**
-     * Query all records.
+     * Query all records by category.
      *
-     * @return QueryBuilder Query builder
+     * @param Category $category
+     *
+     * @return QueryBuilder
      */
     public function queryByCategory(Category $category): QueryBuilder
     {
@@ -84,18 +87,6 @@ class QuestionRepository extends ServiceEntityRepository
             ->orderBy('question.updatedAt', 'DESC')
             ->where('category.id = :id')
             ->setParameter(':id', $category);
-    }
-
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('question');
     }
 
     /**
@@ -139,5 +130,17 @@ class QuestionRepository extends ServiceEntityRepository
     {
         $this->_em->remove($question);
         $this->_em->flush();
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('question');
     }
 }

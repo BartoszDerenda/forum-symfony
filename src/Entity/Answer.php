@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Answer entity.
+ */
+
 namespace App\Entity;
 
 use App\Repository\AnswerRepository;
@@ -96,6 +100,7 @@ class Answer
      * Setter for comment.
      *
      * @param string $comment
+     *
      * @return $this
      */
     public function setComment(string $comment): self
@@ -119,6 +124,7 @@ class Answer
      * Setter for image.
      *
      * @param string|null $image
+     *
      * @return $this
      */
     public function setImage(?string $image): self
@@ -142,6 +148,7 @@ class Answer
      * Setter for created at.
      *
      * @param DateTimeImmutable $createdAt
+     *
      * @return $this
      */
     public function setCreatedAt(DateTimeImmutable $createdAt): self
@@ -165,6 +172,7 @@ class Answer
      * Setter for updated at.
      *
      * @param DateTimeImmutable $updatedAt
+     *
      * @return $this
      */
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
@@ -188,6 +196,7 @@ class Answer
      * Setter for question.
      *
      * @param Question $question
+     *
      * @return $this
      */
     public function setQuestion(Question $question): self
@@ -211,6 +220,7 @@ class Answer
      * Setter for author.
      *
      * @param User|null $author
+     *
      * @return $this
      */
     public function setAuthor(?User $author): self
@@ -234,6 +244,7 @@ class Answer
      * Setter for best answer flag.
      *
      * @param bool $best_answer
+     *
      * @return $this
      */
     public function setBestAnswer(bool $best_answer): self

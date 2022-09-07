@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Tags entity
+ */
+
 namespace App\Entity;
 
 use App\Repository\TagsRepository;
@@ -8,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class Tags.
+ *
+ * @psalm-suppress MissingConstructor
+ */
 #[ORM\Entity(repositoryClass: TagsRepository::class)]
 class Tags
 {
@@ -75,6 +84,7 @@ class Tags
      * Setter for title.
      *
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle(string $title): self
@@ -98,6 +108,7 @@ class Tags
      * Setter for created at.
      *
      * @param DateTimeImmutable $createdAt
+     *
      * @return $this
      */
     public function setCreatedAt(DateTimeImmutable $createdAt): self
@@ -121,6 +132,7 @@ class Tags
      * Setter for updated at.
      *
      * @param DateTimeImmutable $updatedAt
+     *
      * @return $this
      */
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
@@ -144,6 +156,7 @@ class Tags
      * Setter for slug.
      *
      * @param string $slug
+     *
      * @return $this
      */
     public function setSlug(string $slug): self

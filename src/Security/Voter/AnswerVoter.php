@@ -137,9 +137,9 @@ class AnswerVoter extends Voter
     {
         if ($this->security->isGranted('ROLE_ADMIN') or $answer->getAuthor() === $user) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     /**
@@ -154,8 +154,8 @@ class AnswerVoter extends Voter
     {
         if ($this->security->isGranted('ROLE_ADMIN') or $answer->getQuestion()->getAuthor() === $user) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 }

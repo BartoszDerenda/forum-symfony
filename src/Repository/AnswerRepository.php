@@ -49,7 +49,9 @@ class AnswerRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @param Question $question
+     *
+     * @return QueryBuilder
      */
     public function queryAnswersForQuestion(Question $question): QueryBuilder
     {
@@ -60,18 +62,6 @@ class AnswerRepository extends ServiceEntityRepository
             ->where('answer.question = :question_id')
             ->setParameter('question_id', $question)
             ->orderBy('answer.createdAt', 'ASC');
-    }
-
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('answer');
     }
 
     /**
@@ -97,7 +87,11 @@ class AnswerRepository extends ServiceEntityRepository
     }
 
     /**
-     * Award entity.
+     * Add award flag to the entity.
+     *
+     * @param Answer $answer
+     *
+     * @return void
      */
     public function award(Answer $answer): void
     {
@@ -112,7 +106,11 @@ class AnswerRepository extends ServiceEntityRepository
     }
 
     /**
-     * Deaward entity.
+     * Remove award flag from entity.
+     *
+     * @param Answer $answer
+     *
+     * @return void
      */
     public function deaward(Answer $answer): void
     {
@@ -124,5 +122,17 @@ class AnswerRepository extends ServiceEntityRepository
             ->setParameter(':id', $answer)
             ->getQuery()
             ->execute();
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('answer');
     }
 }
