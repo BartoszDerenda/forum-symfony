@@ -53,7 +53,7 @@ class AnswerRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->select(
-                'partial answer.{id, question, createdAt, updatedAt, comment, image, best_answer}',
+                'partial answer.{id, question, createdAt, updatedAt, comment, image, bestAnswer}',
             )
             ->where('answer.question = :question_id')
             ->setParameter('question_id', $question)
@@ -90,7 +90,7 @@ class AnswerRepository extends ServiceEntityRepository
         $queryBuilder = $this->_em->createQueryBuilder();
         $queryBuilder
             ->update('App\Entity\Answer', 'a')
-            ->set('a.best_answer', 1)
+            ->set('a.bestAnswer', 1)
             ->where('a.id = :id')
             ->setParameter(':id', $answer)
             ->getQuery()
@@ -105,7 +105,7 @@ class AnswerRepository extends ServiceEntityRepository
         $queryBuilder = $this->_em->createQueryBuilder();
         $queryBuilder
             ->update('App\Entity\Answer', 'a')
-            ->set('a.best_answer', 0)
+            ->set('a.bestAnswer', 0)
             ->where('a.id = :id')
             ->setParameter(':id', $answer)
             ->getQuery()

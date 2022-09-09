@@ -274,6 +274,30 @@
                 <source>label.roles</source>
                 <target>Role</target>
             </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Hasło</target>
+            </trans-unit>
+            <trans-unit id="label.password_repeat">
+                <source>label.password_repeat</source>
+                <target>Potwierdź hasło</target>
+            </trans-unit>
+            <trans-unit id="title.account_register">
+                <source>title.account_register</source>
+                <target>Rejestracja</target>
+            </trans-unit>
+            <trans-unit id="title.log_in">
+                <source>title.log_in</source>
+                <target>Logowanie</target>
+            </trans-unit>
+            <trans-unit id="title.sign_in">
+                <source>title.sign_in</source>
+                <target>Zaloguj się</target>
+            </trans-unit>
+            <trans-unit id="action.sign_in">
+                <source>action.sign_in</source>
+                <target>Logowanie</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

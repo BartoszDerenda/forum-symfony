@@ -270,6 +270,30 @@
                 <source>label.roles</source>
                 <target>Roles</target>
             </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="label.password_repeat">
+                <source>label.password_repeat</source>
+                <target>Confirm password</target>
+            </trans-unit>
+            <trans-unit id="title.account_register">
+                <source>title.account_register</source>
+                <target>Registration</target>
+            </trans-unit>
+            <trans-unit id="title.log_in">
+                <source>title.log_in</source>
+                <target>Sign in!</target>
+            </trans-unit>
+            <trans-unit id="title.sign_in">
+                <source>title.sign_in</source>
+                <target>Please sign in</target>
+            </trans-unit>
+            <trans-unit id="action.sign_in">
+                <source>action.sign_in</source>
+                <target>Sign in</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

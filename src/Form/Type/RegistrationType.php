@@ -56,8 +56,8 @@ class RegistrationType extends AbstractType
             [
             'type' => PasswordType::class,
             'required' => true,
-            'first_options' => ['label' => 'Hasło'],
-            'second_options' => ['label' => 'Potwierdź hasło'],
+            'first_options' => ['label' => 'label.password'],
+            'second_options' => ['label' => 'label.password_repeat'],
             ]
         );
     }
