@@ -25,19 +25,11 @@ interface UserServiceInterface
 
     /**
      * Save the entity.
-     *
-     * @param User $user
-     *
-     * @return void
      */
     public function save(User $user): void;
 
     /**
      * Delete the entity.
-     *
-     * @param User $user
-     *
-     * @return void
      */
     public function delete(User $user): void;
 }

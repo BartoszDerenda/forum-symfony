@@ -40,11 +40,6 @@ class AnswerService implements AnswerServiceInterface
 
     /**
      * Get paginated list.
-     *
-     * @param int      $page
-     * @param Question $question
-     *
-     * @return PaginationInterface
      */
     public function getPaginatedList(int $page, Question $question): PaginationInterface
     {

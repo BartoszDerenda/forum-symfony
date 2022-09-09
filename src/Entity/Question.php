@@ -165,8 +165,6 @@ class Question
 
     /**
      * Getter for comment.
-     *
-     * @return string
      */
     public function getComment(): string
     {
@@ -175,8 +173,6 @@ class Question
 
     /**
      * Setter for comment.
-     *
-     * @param string $comment
      *
      * @return $this
      */
@@ -189,8 +185,6 @@ class Question
 
     /**
      * Getter for category.
-     *
-     * @return Category
      */
     public function getCategory(): Category
     {
@@ -199,8 +193,6 @@ class Question
 
     /**
      * Setter for category.
-     *
-     * @param Category $category
      *
      * @return $this
      */
@@ -213,8 +205,6 @@ class Question
 
     /**
      * Getter for tags.
-     *
-     * @return Collection
      */
     public function getTags(): Collection
     {
@@ -223,10 +213,6 @@ class Question
 
     /**
      * Add tag.
-     *
-     * @param Tags $tag
-     *
-     * @return void
      */
     public function addTag(Tags $tag): void
     {
@@ -237,10 +223,6 @@ class Question
 
     /**
      * Remove tag.
-     *
-     * @param Tags $tag
-     *
-     * @return void
      */
     public function removeTag(Tags $tag): void
     {
@@ -249,8 +231,6 @@ class Question
 
     /**
      * Getter for image.
-     *
-     * @return string|null
      */
     public function getImage(): ?string
     {
@@ -259,8 +239,6 @@ class Question
 
     /**
      * Setter for image.
-     *
-     * @param string|null $image
      *
      * @return $this
      */
@@ -273,10 +251,6 @@ class Question
 
     /**
      * Getter for answer.
-     *
-     * @param Answer $answer
-     *
-     * @return Collection
      */
     public function getAnswer(Answer $answer): Collection
     {
@@ -285,8 +259,6 @@ class Question
 
     /**
      * Add answer.
-     *
-     * @param Answer $answer
      *
      * @return $this
      */
@@ -302,8 +274,6 @@ class Question
 
     /**
      * Remove answer.
-     *
-     * @param Answer $answer
      *
      * @return $this
      */
@@ -321,8 +291,6 @@ class Question
 
     /**
      * Getter for author.
-     *
-     * @return User|null
      */
     public function getAuthor(): ?User
     {
@@ -331,8 +299,6 @@ class Question
 
     /**
      * Setter for author.
-     *
-     * @param User|null $author
      *
      * @return $this
      */

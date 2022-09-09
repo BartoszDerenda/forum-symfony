@@ -40,10 +40,6 @@ class QuestionService implements QuestionServiceInterface
 
     /**
      * Get paginated list.
-     *
-     * @param int $page
-     *
-     * @return PaginationInterface
      */
     public function getPaginatedList(int $page): PaginationInterface
     {
@@ -56,11 +52,6 @@ class QuestionService implements QuestionServiceInterface
 
     /**
      * Get paginated list for category.
-     *
-     * @param int      $page
-     * @param Category $category
-     *
-     * @return PaginationInterface
      */
     public function queryByCategory(int $page, Category $category): PaginationInterface
     {

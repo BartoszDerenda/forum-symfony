@@ -41,10 +41,6 @@ class SecurityController extends AbstractController
 
     /**
      * Constructor.
-     *
-     * @param UserServiceInterface        $userService
-     * @param TranslatorInterface         $translator
-     * @param UserPasswordHasherInterface $passwordHasher
      */
     public function __construct(UserServiceInterface $userService, TranslatorInterface $translator, UserPasswordHasherInterface $passwordHasher)
     {
@@ -55,10 +51,6 @@ class SecurityController extends AbstractController
 
     /**
      * Login.
-     *
-     * @param AuthenticationUtils $authenticationUtils
-     *
-     * @return Response
      */
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -77,8 +69,6 @@ class SecurityController extends AbstractController
 
     /**
      * Logout.
-     *
-     * @return void
      */
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
@@ -88,11 +78,6 @@ class SecurityController extends AbstractController
 
     /**
      * Register.
-     *
-     * @param Request                     $request
-     * @param UserPasswordHasherInterface $passwordHasher
-     *
-     * @return Response
      */
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher): Response
@@ -137,12 +122,6 @@ class SecurityController extends AbstractController
 
     /**
      * Edit action.
-     *
-     * @param Request                     $request
-     * @param User                        $user
-     * @param UserPasswordHasherInterface $passwordHasher
-     *
-     * @return Response
      */
     #[Route('/{id}/account_edit', name: 'app_account_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
