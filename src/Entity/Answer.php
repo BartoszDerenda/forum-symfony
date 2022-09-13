@@ -78,6 +78,8 @@ class Answer
 
     /**
      * Getter for Id.
+     *
+     * @return int
      */
     public function getId(): int
     {
@@ -86,6 +88,8 @@ class Answer
 
     /**
      * Getter for comment.
+     *
+     * @return string
      */
     public function getComment(): string
     {
@@ -94,6 +98,8 @@ class Answer
 
     /**
      * Setter for comment.
+     *
+     * @param string $comment
      *
      * @return $this
      */
@@ -106,6 +112,8 @@ class Answer
 
     /**
      * Getter for image.
+     *
+     * @return string|null
      */
     public function getImage(): ?string
     {
@@ -114,6 +122,8 @@ class Answer
 
     /**
      * Setter for image.
+     *
+     * @param string|null $image
      *
      * @return $this
      */
@@ -126,6 +136,8 @@ class Answer
 
     /**
      * Getter for created at.
+     *
+     * @return DateTimeImmutable
      */
     public function getCreatedAt(): DateTimeImmutable
     {
@@ -134,6 +146,8 @@ class Answer
 
     /**
      * Setter for created at.
+     *
+     * @param DateTimeImmutable $createdAt
      *
      * @return $this
      */
@@ -146,6 +160,8 @@ class Answer
 
     /**
      * Getter for updated at.
+     *
+     * @return DateTimeImmutable
      */
     public function getUpdatedAt(): DateTimeImmutable
     {
@@ -154,6 +170,8 @@ class Answer
 
     /**
      * Setter for updated at.
+     *
+     * @param DateTimeImmutable $updatedAt
      *
      * @return $this
      */
@@ -166,6 +184,8 @@ class Answer
 
     /**
      * Getter for question.
+     *
+     * @return Question
      */
     public function getQuestion(): Question
     {
@@ -174,6 +194,8 @@ class Answer
 
     /**
      * Setter for question.
+     *
+     * @param Question $question
      *
      * @return $this
      */
@@ -186,6 +208,8 @@ class Answer
 
     /**
      * Getter for author.
+     *
+     * @return User|null
      */
     public function getAuthor(): ?User
     {
@@ -194,6 +218,8 @@ class Answer
 
     /**
      * Setter for author.
+     *
+     * @param User|null $author
      *
      * @return $this
      */
@@ -206,6 +232,8 @@ class Answer
 
     /**
      * Getter for best answer flag.
+     *
+     * @return bool|null
      */
     public function isBestAnswer(): ?bool
     {
@@ -214,6 +242,8 @@ class Answer
 
     /**
      * Setter for best answer flag.
+     *
+     * @param bool $bestAnswer
      *
      * @return $this
      */

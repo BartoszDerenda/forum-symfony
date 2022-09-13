@@ -62,6 +62,8 @@ class Tags
 
     /**
      * Getter for Id.
+     *
+     * @return int
      */
     public function getId(): int
     {
@@ -70,6 +72,8 @@ class Tags
 
     /**
      * Getter for title.
+     *
+     * @return string
      */
     public function getTitle(): string
     {
@@ -78,6 +82,8 @@ class Tags
 
     /**
      * Setter for title.
+     *
+     * @param string $title
      *
      * @return $this
      */
@@ -90,6 +96,8 @@ class Tags
 
     /**
      * Getter for created at.
+     *
+     * @return DateTimeImmutable
      */
     public function getCreatedAt(): DateTimeImmutable
     {
@@ -98,6 +106,8 @@ class Tags
 
     /**
      * Setter for created at.
+     *
+     * @param DateTimeImmutable $createdAt
      *
      * @return $this
      */
@@ -110,6 +120,8 @@ class Tags
 
     /**
      * Getter for updated at.
+     *
+     * @return DateTimeImmutable
      */
     public function getUpdatedAt(): DateTimeImmutable
     {
@@ -118,6 +130,8 @@ class Tags
 
     /**
      * Setter for updated at.
+     *
+     * @param DateTimeImmutable $updatedAt
      *
      * @return $this
      */
@@ -130,6 +144,8 @@ class Tags
 
     /**
      * Getter for slug.
+     *
+     * @return string
      */
     public function getSlug(): string
     {
@@ -138,6 +154,8 @@ class Tags
 
     /**
      * Setter for slug.
+     *
+     * @param string $slug
      *
      * @return $this
      */

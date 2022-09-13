@@ -51,6 +51,8 @@ class QuestionRepository extends ServiceEntityRepository
 
     /**
      * Query all records.
+     *
+     * @return QueryBuilder
      */
     public function queryAll(): QueryBuilder
     {
@@ -67,6 +69,10 @@ class QuestionRepository extends ServiceEntityRepository
 
     /**
      * Query all records by category.
+     *
+     * @param Category $category
+     *
+     * @return QueryBuilder
      */
     public function queryByCategory(Category $category): QueryBuilder
     {
