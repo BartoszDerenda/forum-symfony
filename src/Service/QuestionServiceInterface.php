@@ -29,7 +29,7 @@ interface QuestionServiceInterface
      * @param int      $page     Page number
      * @param Category $category Category entity
      *
-     * @return PaginationInterface
+     * @return PaginationInterface Pagination interface
      */
     public function queryByCategory(int $page, Category $category): PaginationInterface;
 

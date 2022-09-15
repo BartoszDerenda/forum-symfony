@@ -37,8 +37,8 @@ class AnswerController extends AbstractController
     /**
      * Constructor.
      *
-     * @param AnswerServiceInterface $answerService
-     * @param TranslatorInterface    $translator
+     * @param AnswerServiceInterface $answerService Answer interface
+     * @param TranslatorInterface    $translator    Translator interface
      */
     public function __construct(AnswerServiceInterface $answerService, TranslatorInterface $translator)
     {
@@ -49,10 +49,10 @@ class AnswerController extends AbstractController
     /**
      * Create action.
      *
-     * @param Request  $request
-     * @param Question $question
+     * @param Request  $request  Request
+     * @param Question $question Question entity
      *
-     * @return Response
+     * @return Response Response
      */
     #[Route(
         '/{id}',

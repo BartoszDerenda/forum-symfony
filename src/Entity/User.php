@@ -95,7 +95,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @return string User identifier
      *
-     * @see UserInterface
+     * @see UserInterface User interface
      */
     public function getUserIdentifier(): string
     {
@@ -117,7 +117,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @return array<int, string> Roles
      *
-     * @see UserInterface
+     * @see UserInterface User interface
      */
     public function getRoles(): array
     {
@@ -143,7 +143,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @return string Password
      *
-     * @see PasswordAuthenticatedUserInterface
+     * @see PasswordAuthenticatedUserInterface Password interface
      */
     public function getPassword(): string
     {
@@ -164,7 +164,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * Returning a salt is only needed, if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
-     * @return string|null
+     * @return string|null Salt
      */
     public function getSalt(): ?string
     {
@@ -174,7 +174,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Removes sensitive information from the token.
      *
-     * @see UserInterface
+     * @see UserInterface User interface
      */
     public function eraseCredentials(): void
     {
@@ -185,7 +185,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Getter for nickname.
      *
-     * @return string|null
+     * @return string|null Nickname
      */
     public function getNickname(): ?string
     {
@@ -195,9 +195,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * Setter for nickname.
      *
-     * @param string $nickname
+     * @param string $nickname Nickname
      *
-     * @return $this
+     * @return $this Nickname
      */
     public function setNickname(string $nickname): self
     {

@@ -42,9 +42,9 @@ class UserController extends AbstractController
     /**
      * Constructor.
      *
-     * @param UserServiceInterface        $userService
-     * @param TranslatorInterface         $translator
-     * @param UserPasswordHasherInterface $passwordHasher
+     * @param UserServiceInterface        $userService    User interface
+     * @param TranslatorInterface         $translator     Translator interface
+     * @param UserPasswordHasherInterface $passwordHasher User password interface
      */
     public function __construct(UserServiceInterface $userService, TranslatorInterface $translator, UserPasswordHasherInterface $passwordHasher)
     {
@@ -56,9 +56,9 @@ class UserController extends AbstractController
     /**
      * Index action.
      *
-     * @param Request $request
+     * @param Request $request Request
      *
-     * @return Response
+     * @return Response Response
      */
     #[Route(name: 'user_index', methods: 'GET')]
     public function index(Request $request): Response

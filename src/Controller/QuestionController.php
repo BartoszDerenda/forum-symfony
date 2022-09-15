@@ -43,9 +43,9 @@ class QuestionController extends AbstractController
     /**
      * Constructor.
      *
-     * @param QuestionServiceInterface $questionService
-     * @param AnswerServiceInterface   $answerService
-     * @param TranslatorInterface      $translator
+     * @param QuestionServiceInterface $questionService Question interface
+     * @param AnswerServiceInterface   $answerService   Answer interface
+     * @param TranslatorInterface      $translator      Translator interface
      */
     public function __construct(QuestionServiceInterface $questionService, AnswerServiceInterface $answerService, TranslatorInterface $translator)
     {
@@ -57,9 +57,9 @@ class QuestionController extends AbstractController
     /**
      * Index action.
      *
-     * @param Request $request
+     * @param Request $request Request
      *
-     * @return Response
+     * @return Response Response
      */
     #[Route(name: 'question_index', methods: 'GET')]
     public function index(Request $request): Response
@@ -74,10 +74,10 @@ class QuestionController extends AbstractController
     /**
      * Show action.
      *
-     * @param Question $question
-     * @param Request  $request
+     * @param Question $question Question entity
+     * @param Request  $request  Request
      *
-     * @return Response
+     * @return Response Response
      */
     #[Route(
         '/{id}',
@@ -98,10 +98,10 @@ class QuestionController extends AbstractController
     /**
      * Show by category action.
      *
-     * @param Category $category
-     * @param Request  $request
+     * @param Category $category Category entity
+     * @param Request  $request  Request
      *
-     * @return Response
+     * @return Response Response
      */
     #[Route(
         '/category/{id}',
@@ -122,9 +122,9 @@ class QuestionController extends AbstractController
     /**
      * Create action.
      *
-     * @param Request $request
+     * @param Request $request Request
      *
-     * @return Response
+     * @return Response Response
      */
     #[Route('/create', name: 'question_create', methods: 'GET|POST')]
     public function create(Request $request): Response

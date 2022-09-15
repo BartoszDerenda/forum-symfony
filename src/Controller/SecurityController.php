@@ -42,9 +42,9 @@ class SecurityController extends AbstractController
     /**
      * Constructor.
      *
-     * @param UserServiceInterface        $userService
-     * @param TranslatorInterface         $translator
-     * @param UserPasswordHasherInterface $passwordHasher
+     * @param UserServiceInterface        $userService    User interface
+     * @param TranslatorInterface         $translator     Translator interface
+     * @param UserPasswordHasherInterface $passwordHasher User password interface
      */
     public function __construct(UserServiceInterface $userService, TranslatorInterface $translator, UserPasswordHasherInterface $passwordHasher)
     {
@@ -56,9 +56,9 @@ class SecurityController extends AbstractController
     /**
      * Login.
      *
-     * @param AuthenticationUtils $authenticationUtils
+     * @param AuthenticationUtils $authenticationUtils Authentication
      *
-     * @return Response
+     * @return Response Response
      */
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
@@ -78,7 +78,7 @@ class SecurityController extends AbstractController
     /**
      * Logout.
      *
-     * @return void
+     * @return void Void
      */
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
@@ -89,10 +89,10 @@ class SecurityController extends AbstractController
     /**
      * Register.
      *
-     * @param Request                     $request
-     * @param UserPasswordHasherInterface $passwordHasher
+     * @param Request                     $request        Request
+     * @param UserPasswordHasherInterface $passwordHasher User password interface
      *
-     * @return Response
+     * @return Response Response
      */
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher): Response
@@ -138,11 +138,11 @@ class SecurityController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request                     $request
-     * @param User                        $user
-     * @param UserPasswordHasherInterface $passwordHasher
+     * @param Request                     $request        Request
+     * @param User                        $user           User entity
+     * @param UserPasswordHasherInterface $passwordHasher User password interface
      *
-     * @return Response
+     * @return Response Response
      */
     #[Route('/{id}/account_edit', name: 'app_account_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     #[IsGranted('IS_AUTHENTICATED_FULLY')]

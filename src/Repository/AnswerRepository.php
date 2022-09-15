@@ -49,9 +49,9 @@ class AnswerRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @param Question $question
+     * @param Question $question Question entity
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function queryAnswersForQuestion(Question $question): QueryBuilder
     {
@@ -89,9 +89,9 @@ class AnswerRepository extends ServiceEntityRepository
     /**
      * Add award flag to the entity.
      *
-     * @param Answer $answer
+     * @param Answer $answer Answer entity
      *
-     * @return void
+     * @return void Void
      */
     public function award(Answer $answer): void
     {
@@ -108,9 +108,9 @@ class AnswerRepository extends ServiceEntityRepository
     /**
      * Remove award flag from entity.
      *
-     * @param Answer $answer
+     * @param Answer $answer Answer entity
      *
-     * @return void
+     * @return void Void
      */
     public function deaward(Answer $answer): void
     {

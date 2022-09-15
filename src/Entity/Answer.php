@@ -79,7 +79,7 @@ class Answer
     /**
      * Getter for Id.
      *
-     * @return int
+     * @return int Id
      */
     public function getId(): int
     {
@@ -89,7 +89,7 @@ class Answer
     /**
      * Getter for comment.
      *
-     * @return string
+     * @return string Comment
      */
     public function getComment(): string
     {
@@ -99,9 +99,9 @@ class Answer
     /**
      * Setter for comment.
      *
-     * @param string $comment
+     * @param string $comment Comment
      *
-     * @return $this
+     * @return $this Comment
      */
     public function setComment(string $comment): self
     {
@@ -113,7 +113,7 @@ class Answer
     /**
      * Getter for image.
      *
-     * @return string|null
+     * @return string|null Image
      */
     public function getImage(): ?string
     {
@@ -123,9 +123,9 @@ class Answer
     /**
      * Setter for image.
      *
-     * @param string|null $image
+     * @param string|null $image Image
      *
-     * @return $this
+     * @return $this Image
      */
     public function setImage(?string $image): self
     {
@@ -137,7 +137,7 @@ class Answer
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable
+     * @return DateTimeImmutable Created at
      */
     public function getCreatedAt(): DateTimeImmutable
     {
@@ -147,9 +147,9 @@ class Answer
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable $createdAt
+     * @param DateTimeImmutable $createdAt Created at
      *
-     * @return $this
+     * @return $this Created at
      */
     public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
@@ -161,7 +161,7 @@ class Answer
     /**
      * Getter for updated at.
      *
-     * @return DateTimeImmutable
+     * @return DateTimeImmutable Updated at
      */
     public function getUpdatedAt(): DateTimeImmutable
     {
@@ -171,9 +171,9 @@ class Answer
     /**
      * Setter for updated at.
      *
-     * @param DateTimeImmutable $updatedAt
+     * @param DateTimeImmutable $updatedAt Updated at
      *
-     * @return $this
+     * @return $this Updated at
      */
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
@@ -185,7 +185,7 @@ class Answer
     /**
      * Getter for question.
      *
-     * @return Question
+     * @return Question Question
      */
     public function getQuestion(): Question
     {
@@ -195,9 +195,9 @@ class Answer
     /**
      * Setter for question.
      *
-     * @param Question $question
+     * @param Question $question Question
      *
-     * @return $this
+     * @return $this Question
      */
     public function setQuestion(Question $question): self
     {
@@ -209,7 +209,7 @@ class Answer
     /**
      * Getter for author.
      *
-     * @return User|null
+     * @return User|null Author
      */
     public function getAuthor(): ?User
     {
@@ -219,9 +219,9 @@ class Answer
     /**
      * Setter for author.
      *
-     * @param User|null $author
+     * @param User|null $author Author
      *
-     * @return $this
+     * @return $this Author
      */
     public function setAuthor(?User $author): self
     {
@@ -233,7 +233,7 @@ class Answer
     /**
      * Getter for best answer flag.
      *
-     * @return bool|null
+     * @return bool|null Best answer
      */
     public function isBestAnswer(): ?bool
     {
@@ -243,9 +243,9 @@ class Answer
     /**
      * Setter for best answer flag.
      *
-     * @param bool $bestAnswer
+     * @param bool $bestAnswer Best answer
      *
-     * @return $this
+     * @return $this Best answer
      */
     public function setBestAnswer(bool $bestAnswer): self
     {

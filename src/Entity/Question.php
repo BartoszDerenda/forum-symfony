@@ -166,7 +166,7 @@ class Question
     /**
      * Getter for comment.
      *
-     * @return string
+     * @return string Comment
      */
     public function getComment(): string
     {
@@ -176,9 +176,9 @@ class Question
     /**
      * Setter for comment.
      *
-     * @param string $comment
+     * @param string $comment Comment
      *
-     * @return $this
+     * @return $this Comment
      */
     public function setComment(string $comment): self
     {
@@ -190,7 +190,7 @@ class Question
     /**
      * Getter for category.
      *
-     * @return Category
+     * @return Category Category
      */
     public function getCategory(): Category
     {
@@ -200,9 +200,9 @@ class Question
     /**
      * Setter for category.
      *
-     * @param Category $category
+     * @param Category $category Category
      *
-     * @return $this
+     * @return $this Category
      */
     public function setCategory(Category $category): self
     {
@@ -214,7 +214,7 @@ class Question
     /**
      * Getter for tags.
      *
-     * @return Collection
+     * @return Collection Tags
      */
     public function getTags(): Collection
     {
@@ -224,9 +224,9 @@ class Question
     /**
      * Add tag.
      *
-     * @param Tags $tag
+     * @param Tags $tag Tags
      *
-     * @return void
+     * @return void Void
      */
     public function addTag(Tags $tag): void
     {
@@ -238,9 +238,9 @@ class Question
     /**
      * Remove tag.
      *
-     * @param Tags $tag
+     * @param Tags $tag Tags
      *
-     * @return void
+     * @return void Void
      */
     public function removeTag(Tags $tag): void
     {
@@ -250,7 +250,7 @@ class Question
     /**
      * Getter for image.
      *
-     * @return string|null
+     * @return string|null Image
      */
     public function getImage(): ?string
     {
@@ -260,9 +260,9 @@ class Question
     /**
      * Setter for image.
      *
-     * @param string|null $image
+     * @param string|null $image Image
      *
-     * @return $this
+     * @return $this Image
      */
     public function setImage(?string $image): self
     {
@@ -274,9 +274,9 @@ class Question
     /**
      * Getter for answer.
      *
-     * @param Answer $answer
+     * @param Answer $answer Answer
      *
-     * @return Collection
+     * @return Collection Answer
      */
     public function getAnswer(Answer $answer): Collection
     {
@@ -286,9 +286,9 @@ class Question
     /**
      * Add answer.
      *
-     * @param Answer $answer
+     * @param Answer $answer Answer
      *
-     * @return $this
+     * @return $this Answer
      */
     public function addAnswer(Answer $answer): self
     {
@@ -303,9 +303,9 @@ class Question
     /**
      * Remove answer.
      *
-     * @param Answer $answer
+     * @param Answer $answer Answer
      *
-     * @return $this
+     * @return $this Answer
      */
     public function removeAnswer(Answer $answer): self
     {
@@ -322,7 +322,7 @@ class Question
     /**
      * Getter for author.
      *
-     * @return User|null
+     * @return User|null Author
      */
     public function getAuthor(): ?User
     {
@@ -332,9 +332,9 @@ class Question
     /**
      * Setter for author.
      *
-     * @param User|null $author
+     * @param User|null $author Author
      *
-     * @return $this
+     * @return $this Author
      */
     public function setAuthor(?User $author): self
     {

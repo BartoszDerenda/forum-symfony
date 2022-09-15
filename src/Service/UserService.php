@@ -59,7 +59,7 @@ class UserService implements UserServiceInterface
      *
      * @param User $user User entity
      *
-     * @return void
+     * @return void Void
      */
     public function save(User $user): void
     {
@@ -71,7 +71,7 @@ class UserService implements UserServiceInterface
      *
      * @param User $user User entity
      *
-     * @return void
+     * @return void Void
      */
     public function delete(User $user): void
     {

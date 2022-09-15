@@ -52,7 +52,7 @@ class QuestionRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
@@ -70,9 +70,9 @@ class QuestionRepository extends ServiceEntityRepository
     /**
      * Query all records by category.
      *
-     * @param Category $category
+     * @param Category $category Category entity
      *
-     * @return QueryBuilder
+     * @return QueryBuilder Query builder
      */
     public function queryByCategory(Category $category): QueryBuilder
     {
@@ -92,12 +92,12 @@ class QuestionRepository extends ServiceEntityRepository
     /**
      * Count questions by category.
      *
-     * @param Category $category Category
+     * @param Category $category Category entity
      *
      * @return int Number of questions in category
      *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
+     * @throws NoResultException        Exception
+     * @throws NonUniqueResultException Exception
      */
     public function countByCategory(Category $category): int
     {

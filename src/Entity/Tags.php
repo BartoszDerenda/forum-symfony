@@ -63,7 +63,7 @@ class Tags
     /**
      * Getter for Id.
      *
-     * @return int
+     * @return int Id
      */
     public function getId(): int
     {
@@ -73,7 +73,7 @@ class Tags
     /**
      * Getter for title.
      *
-     * @return string
+     * @return string Title
      */
     public function getTitle(): string
     {
@@ -83,9 +83,9 @@ class Tags
     /**
      * Setter for title.
      *
-     * @param string $title
+     * @param string $title Title
      *
-     * @return $this
+     * @return $this Title
      */
     public function setTitle(string $title): self
     {
@@ -97,7 +97,7 @@ class Tags
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable
+     * @return DateTimeImmutable CreatedAt
      */
     public function getCreatedAt(): DateTimeImmutable
     {
@@ -107,9 +107,9 @@ class Tags
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable $createdAt
+     * @param DateTimeImmutable $createdAt CreatedAt
      *
-     * @return $this
+     * @return $this CreatedAt
      */
     public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
@@ -121,7 +121,7 @@ class Tags
     /**
      * Getter for updated at.
      *
-     * @return DateTimeImmutable
+     * @return DateTimeImmutable UpdatedAt
      */
     public function getUpdatedAt(): DateTimeImmutable
     {
@@ -131,9 +131,9 @@ class Tags
     /**
      * Setter for updated at.
      *
-     * @param DateTimeImmutable $updatedAt
+     * @param DateTimeImmutable $updatedAt UpdatedAt
      *
-     * @return $this
+     * @return $this UpdatedAt
      */
     public function setUpdatedAt(DateTimeImmutable $updatedAt): self
     {
@@ -145,7 +145,7 @@ class Tags
     /**
      * Getter for slug.
      *
-     * @return string
+     * @return string Slug
      */
     public function getSlug(): string
     {
@@ -155,9 +155,9 @@ class Tags
     /**
      * Setter for slug.
      *
-     * @param string $slug
+     * @param string $slug Slug
      *
-     * @return $this
+     * @return $this Slug
      */
     public function setSlug(string $slug): self
     {
@@ -169,7 +169,7 @@ class Tags
     /**
      * String conversion.
      *
-     * @return string
+     * @return string String
      */
     public function __toString()
     {
