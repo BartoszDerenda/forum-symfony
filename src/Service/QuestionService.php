@@ -41,7 +41,7 @@ class QuestionService implements QuestionServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int $page
+     * @param int $page Page number
      *
      * @return PaginationInterface
      */
@@ -57,8 +57,8 @@ class QuestionService implements QuestionServiceInterface
     /**
      * Get paginated list for category.
      *
-     * @param int      $page
-     * @param Category $category
+     * @param int      $page     Page number
+     * @param Category $category Category entity
      *
      * @return PaginationInterface
      */

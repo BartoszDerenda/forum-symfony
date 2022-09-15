@@ -26,7 +26,7 @@ interface UserServiceInterface
     /**
      * Save the entity.
      *
-     * @param User $user
+     * @param User $user User entity
      *
      * @return void
      */
@@ -35,7 +35,7 @@ interface UserServiceInterface
     /**
      * Delete the entity.
      *
-     * @param User $user
+     * @param User $user User entity
      *
      * @return void
      */

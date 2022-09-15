@@ -17,8 +17,8 @@ interface AnswerServiceInterface
     /**
      * Get paginated list.
      *
-     * @param int      $page
-     * @param Question $question
+     * @param int      $page     Page number
+     * @param Question $question Question entity
      *
      * @return PaginationInterface
      */
